@@ -24,7 +24,7 @@ export const LivePreview: React.FC<LivePreviewProps> = ({
         ref={iframeRef}
         srcDoc={fullCode}
         title="Anteprima del Sito Standalone"
-        sandbox="allow-scripts allow-same-origin allow-modals allow-forms"
+        sandbox="allow-scripts allow-same-origin allow-modals allow-forms allow-downloads"
         className="w-full h-full border-0 block flex-1 bg-[#f1f5f9]"
       />
     </div>

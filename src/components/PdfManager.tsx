@@ -237,8 +237,8 @@ export const PdfManager: React.FC<PdfManagerProps> = ({ js, setJs }) => {
         ? `<div class="modal-download-box">\n  <div class="modal-download-info">\n    <span class="modal-download-title">${buttonLabel}</span>\n    <span class="modal-download-desc">${buttonDesc}</span>\n  </div>\n  <a href="${directPathToUse}" download class="${colorClass}">\n    Scarica File\n  </a>\n</div>`
         : `<a href="${directPathToUse}" download class="${colorClass}">\n  ${buttonLabel}\n</a>`)
     : (buttonBoxStyle === 'box'
-        ? `<div class="modal-download-box">\n  <div class="modal-download-info">\n    <span class="modal-download-title">${buttonLabel}</span>\n    <span class="modal-download-desc">${buttonDesc}</span>\n  </div>\n  <button type="button" onclick="scaricaFileModale('${selectedTarget}', 'materiale.html')" class="${colorClass}">\n    Scarica File\n  </button>\n</div>`
-        : `<button type="button" onclick="scaricaFileModale('${selectedTarget}', 'materiale.html')" class="${colorClass}">\n  ${buttonLabel}\n</button>`);
+        ? `<div class="modal-download-box">\n  <div class="modal-download-info">\n    <span class="modal-download-title">${buttonLabel}</span>\n    <span class="modal-download-desc">${buttonDesc}</span>\n  </div>\n  <button type="button" data-modal="${selectedTarget}" data-filename="materiale.html" onclick="scaricaFileModale(this.dataset.modal, this.dataset.filename)" class="${colorClass}">\n    Scarica File\n  </button>\n</div>`
+        : `<button type="button" data-modal="${selectedTarget}" data-filename="materiale.html" onclick="scaricaFileModale(this.dataset.modal, this.dataset.filename)" class="${colorClass}">\n  ${buttonLabel}\n</button>`);
 
   const handleCopySnippet = () => {
     navigator.clipboard.writeText(generatedHtmlSnippet);
@@ -253,8 +253,8 @@ export const PdfManager: React.FC<PdfManagerProps> = ({ js, setJs }) => {
           ? `<div class='modal-download-box'><div class='modal-download-info'><span class='modal-download-title'>${buttonLabel.replace(/'/g, "\\'")}</span><span class='modal-download-desc'>${buttonDesc.replace(/'/g, "\\'")}</span></div><a href='${directPathToUse}' download class='${colorClass}'>Scarica File</a></div>`
           : `<a href='${directPathToUse}' download class='${colorClass}'>${buttonLabel.replace(/'/g, "\\'")}</a>`)
       : (buttonBoxStyle === 'box'
-          ? `<div class='modal-download-box'><div class='modal-download-info'><span class='modal-download-title'>${buttonLabel.replace(/'/g, "\\'")}</span><span class='modal-download-desc'>${buttonDesc.replace(/'/g, "\\'")}</span></div><button type='button' onclick=\\"scaricaFileModale('${selectedTarget}', 'materiale.html')\\" class='${colorClass}'>Scarica File</button></div>`
-          : `<button type='button' onclick=\\"scaricaFileModale('${selectedTarget}', 'materiale.html')\\" class='${colorClass}'>${buttonLabel.replace(/'/g, "\\'")}</button>`);
+          ? `<div class='modal-download-box'><div class='modal-download-info'><span class='modal-download-title'>${buttonLabel.replace(/'/g, "\\'")}</span><span class='modal-download-desc'>${buttonDesc.replace(/'/g, "\\'")}</span></div><button type='button' data-modal='${selectedTarget}' data-filename='materiale.html' onclick='scaricaFileModale(this.dataset.modal, this.dataset.filename)' class='${colorClass}'>Scarica File</button></div>`
+          : `<button type='button' data-modal='${selectedTarget}' data-filename='materiale.html' onclick='scaricaFileModale(this.dataset.modal, this.dataset.filename)' class='${colorClass}'>${buttonLabel.replace(/'/g, "\\'")}</button>`);
 
     let updatedJs = js;
     const regex = new RegExp(`(${selectedTarget}\\s*:\\s*\\{[\\s\\S]*?html\\s*:\\s*)(["'\`])([\\s\\S]*?)\\2`, 'i');

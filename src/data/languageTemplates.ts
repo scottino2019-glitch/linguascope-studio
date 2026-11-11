@@ -2276,46 +2276,46 @@ const CONTENUTI_SCHEDE = {
   indice: {
     tag: "Indice Generale",
     titolo: "Indice Completo delle Lezioni",
-    html: "<p>Contenuto dell'indice generale delle lezioni del corso.</p><div class='modal-download-box'><div class='modal-download-info'><span class='modal-download-title'>Programma e Dispensa Generale</span><span class='modal-download-desc'>File scaricabile per l'intero corso (HTML o PDF)</span></div><button type='button' onclick=\"scaricaFileModale('indice', 'dispensa-completa.html')\" class='modal-download-btn'>📥 Scarica Dispensa</button></div>"
+    html: "<p>Contenuto dell'indice generale delle lezioni del corso.</p><div class='modal-download-box'><div class='modal-download-info'><span class='modal-download-title'>Programma e Dispensa Generale</span><span class='modal-download-desc'>File scaricabile per l'intero corso (HTML o PDF)</span></div><button type='button' data-modal='indice' data-filename='dispensa-completa.html' onclick='scaricaFileModale(this.dataset.modal, this.dataset.filename)' class='modal-download-btn'>📥 Scarica Dispensa</button></div>"
   },
 
   // 2. CARD 1 (I 4 pulsanti delle regole sul nastro + link in basso)
   card_1: {
     tag: "Card 1 · Generale",
     titolo: "Modale Generale Card 1",
-    html: "<p>Contenuto didattico della Card 1. Inserisci qui le tue regole, note ed esercizi di grammatica.</p><div class='modal-download-box'><div class='modal-download-info'><span class='modal-download-title'>Materiale di Lavoro Card 1</span><span class='modal-download-desc'>File scaricabile per questa lezione (HTML o PDF)</span></div><button type='button' onclick=\"scaricaFileModale('card_1', 'scheda-card-1.html')\" class='modal-download-btn'>📥 Scarica File di Lavoro</button></div>"
+    html: "<p>Contenuto didattico della Card 1. Inserisci qui le tue regole, note ed esercizi di grammatica.</p><div class='modal-download-box'><div class='modal-download-info'><span class='modal-download-title'>Materiale di Lavoro Card 1</span><span class='modal-download-desc'>File scaricabile per questa lezione (HTML o PDF)</span></div><button type='button' data-modal='card_1' data-filename='scheda-card-1.html' onclick='scaricaFileModale(this.dataset.modal, this.dataset.filename)' class='modal-download-btn'>📥 Scarica File di Lavoro</button></div>"
   },
   card_1_1: {
     tag: "Card 1 · Regola 1",
     titolo: "Modale Card 1.1",
-    html: "<p>Regola 1.1: Esercizi pratici e note di scrittura per questa lezione.</p><div class='modal-download-box'><div class='modal-download-info'><span class='modal-download-title'>Scheda Esercizi 1.1</span><span class='modal-download-desc'>File scaricabile pronto per lo studio (HTML o PDF)</span></div><button type='button' onclick=\"scaricaFileModale('card_1_1', 'scheda-regola-1.html')\" class='modal-download-btn'>📥 Scarica Scheda</button></div>"
+    html: "<p>Regola 1.1: Esercizi pratici e note di scrittura per questa lezione.</p><div class='modal-download-box'><div class='modal-download-info'><span class='modal-download-title'>Scheda Esercizi 1.1</span><span class='modal-download-desc'>File scaricabile pronto per lo studio (HTML o PDF)</span></div><button type='button' data-modal='card_1_1' data-filename='scheda-regola-1.html' onclick='scaricaFileModale(this.dataset.modal, this.dataset.filename)' class='modal-download-btn'>📥 Scarica Scheda</button></div>"
   },
   card_1_2: {
     tag: "Card 1 · Regola 2",
     titolo: "Modale Card 1.2",
-    html: "<p>Regola 1.2: Esempi di conversazione e frasi modello.</p><div class='modal-download-box'><div class='modal-download-info'><span class='modal-download-title'>Scheda Esercizi 1.2</span><span class='modal-download-desc'>File scaricabile pronto per lo studio (HTML o PDF)</span></div><button type='button' onclick=\"scaricaFileModale('card_1_2', 'scheda-regola-2.html')\" class='modal-download-btn'>📥 Scarica Scheda</button></div>"
+    html: "<p>Regola 1.2: Esempi di conversazione e frasi modello.</p><div class='modal-download-box'><div class='modal-download-info'><span class='modal-download-title'>Scheda Esercizi 1.2</span><span class='modal-download-desc'>File scaricabile pronto per lo studio (HTML o PDF)</span></div><button type='button' data-modal='card_1_2' data-filename='scheda-regola-2.html' onclick='scaricaFileModale(this.dataset.modal, this.dataset.filename)' class='modal-download-btn'>📥 Scarica Scheda</button></div>"
   },
   card_1_3: {
     tag: "Card 1 · Regola 3",
     titolo: "Modale Card 1.3",
-    html: "<p>Regola 1.3: Casi speciali ed eccezioni grammaticali.</p><div class='modal-download-box'><div class='modal-download-info'><span class='modal-download-title'>Scheda Esercizi 1.3</span><span class='modal-download-desc'>File scaricabile pronto per lo studio (HTML o PDF)</span></div><button type='button' onclick=\"scaricaFileModale('card_1_3', 'scheda-regola-3.html')\" class='modal-download-btn'>📥 Scarica Scheda</button></div>"
+    html: "<p>Regola 1.3: Casi speciali ed eccezioni grammaticali.</p><div class='modal-download-box'><div class='modal-download-info'><span class='modal-download-title'>Scheda Esercizi 1.3</span><span class='modal-download-desc'>File scaricabile pronto per lo studio (HTML o PDF)</span></div><button type='button' data-modal='card_1_3' data-filename='scheda-regola-3.html' onclick='scaricaFileModale(this.dataset.modal, this.dataset.filename)' class='modal-download-btn'>📥 Scarica Scheda</button></div>"
   },
   card_1_4: {
     tag: "Card 1 · Regola 4",
     titolo: "Modale Card 1.4",
-    html: "<p>Regola 1.4: Riepilogo e test di verifica finale.</p><div class='modal-download-box'><div class='modal-download-info'><span class='modal-download-title'>Scheda Esercizi 1.4</span><span class='modal-download-desc'>File scaricabile pronto per lo studio (HTML o PDF)</span></div><button type='button' onclick=\"scaricaFileModale('card_1_4', 'scheda-regola-4.html')\" class='modal-download-btn'>📥 Scarica Scheda</button></div>"
+    html: "<p>Regola 1.4: Riepilogo e test di verifica finale.</p><div class='modal-download-box'><div class='modal-download-info'><span class='modal-download-title'>Scheda Esercizi 1.4</span><span class='modal-download-desc'>File scaricabile pronto per lo studio (HTML o PDF)</span></div><button type='button' data-modal='card_1_4' data-filename='scheda-regola-4.html' onclick='scaricaFileModale(this.dataset.modal, this.dataset.filename)' class='modal-download-btn'>📥 Scarica Scheda</button></div>"
   },
 
   // 3. MASTERCLASS VIDEO (I 3 box cliccabili sotto al video)
   video_1: {
     tag: "HSK 1",
     titolo: "Vocaboli essenziali",
-    html: "<pre>0:00 1. 早餐摊 zǎocān tān · The breakfast stall\\n1:32 2. 超市 chāoshì · At the supermarket\\n2:54 3. 水果店 shuǐguǒ diàn · At the fruit shop\\n3:57 4. 出租车上 zài chūzūchē shang · In the taxi\\n5:17 5. 问路 wèn lù · Asking the way\\n6:32 6. 书店 shūdiàn · At the bookstore\\n8:07 7. 饺子店 jiǎozi diàn · At the dumpling restaurant\\n9:21 8. 别人问路 biérén wèn lù · Someone asks Mike the way\\n10:16 9. 奶茶店 nǎichá diàn · At the milk tea shop\\n11:16 10. 衣服店 yīfu diàn · At the clothing shop\\n12:41 11. 地铁上 dìtiě shang · On the subway\\n13:46 12. 小区门口 xiǎoqū ménkǒu · At the gate\\n14:27 13. 小狗 xiǎo gǒu · The little dog\\n15:18 14. 外卖到了 wàimài dào le · The delivery is here\\n15:49 15. 楼下 lóu xià · Downstairs</pre><div class='modal-download-box'><div class='modal-download-info'><span class='modal-download-title'>Scheda Vocaboli Essenziali</span><span class='modal-download-desc'>File scaricabile per questa lezione (HTML o PDF)</span></div><button type='button' onclick=\"scaricaFileModale('video_1', 'vocaboli-essenziali.html')\" class='modal-download-btn'>📥 Scarica Vocaboli</button></div>"
+    html: "<pre>0:00 1. 早餐摊 zǎocān tān · The breakfast stall\\n1:32 2. 超市 chāoshì · At the supermarket\\n2:54 3. 水果店 shuǐguǒ diàn · At the fruit shop\\n3:57 4. 出租车上 zài chūzūchē shang · In the taxi\\n5:17 5. 问路 wèn lù · Asking the way\\n6:32 6. 书店 shūdiàn · At the bookstore\\n8:07 7. 饺子店 jiǎozi diàn · At the dumpling restaurant\\n9:21 8. 别人问路 biérén wèn lù · Someone asks Mike the way\\n10:16 9. 奶茶店 nǎichá diàn · At the milk tea shop\\n11:16 10. 衣服店 yīfu diàn · At the clothing shop\\n12:41 11. 地铁上 dìtiě shang · On the subway\\n13:46 12. 小区门口 xiǎoqū ménkǒu · At the gate\\n14:27 13. 小狗 xiǎo gǒu · The little dog\\n15:18 14. 外卖到了 wàimài dào le · The delivery is here\\n15:49 15. 楼下 lóu xià · Downstairs</pre><div class='modal-download-box'><div class='modal-download-info'><span class='modal-download-title'>Scheda Vocaboli Essenziali</span><span class='modal-download-desc'>File scaricabile per questa lezione (HTML o PDF)</span></div><button type='button' data-modal='video_1' data-filename='vocaboli-essenziali.html' onclick='scaricaFileModale(this.dataset.modal, this.dataset.filename)' class='modal-download-btn'>📥 Scarica Vocaboli</button></div>"
   },
   video_2: {
     tag: "HSK 3",
     titolo: "Nuove parole",
-    html: "<pre>New words that aren\\'t HSK 1 (only 4):\\n豆浆 dòujiāng – soy milk\\n阿姨 āyí – auntie (a friendly way to call an older woman)\\n师傅 shīfu – what you call a taxi driver\\n奶茶 nǎichá – milk tea</pre><div class='modal-download-box'><div class='modal-download-info'><span class='modal-download-title'>Scheda Nuove Parole</span><span class='modal-download-desc'>File scaricabile per questa lezione (HTML o PDF)</span></div><button type='button' onclick=\"scaricaFileModale('video_2', 'nuove-parole.html')\" class='modal-download-btn'>📥 Scarica Scheda</button></div>"
+    html: "<pre>New words that aren\\'t HSK 1 (only 4):\\n豆浆 dòujiāng – soy milk\\n阿姨 āyí – auntie (a friendly way to call an older woman)\\n师傅 shīfu – what you call a taxi driver\\n奶茶 nǎichá – milk tea</pre><div class='modal-download-box'><div class='modal-download-info'><span class='modal-download-title'>Scheda Nuove Parole</span><span class='modal-download-desc'>File scaricabile per questa lezione (HTML o PDF)</span></div><button type='button' data-modal='video_2' data-filename='nuove-parole.html' onclick='scaricaFileModale(this.dataset.modal, this.dataset.filename)' class='modal-download-btn'>📥 Scarica Scheda</button></div>"
   },
   video_3: {
     tag: "Script",
@@ -2327,21 +2327,21 @@ const CONTENUTI_SCHEDE = {
   card_2: {
     tag: "Card 2",
     titolo: "Modale Card 2",
-    html: "<p>Contenuto didattico della Card 2. Approfondimento tematico, categorie e vocabolario interattivo.</p><div class='modal-download-box'><div class='modal-download-info'><span class='modal-download-title'>Scheda di Approfondimento Card 2</span><span class='modal-download-desc'>File scaricabile per questa lezione (HTML o PDF)</span></div><button type='button' onclick=\"scaricaFileModale('card_2', 'scheda-card-2.html')\" class='modal-download-btn'>📥 Scarica Scheda</button></div>"
+    html: "<p>Contenuto didattico della Card 2. Approfondimento tematico, categorie e vocabolario interattivo.</p><div class='modal-download-box'><div class='modal-download-info'><span class='modal-download-title'>Scheda di Approfondimento Card 2</span><span class='modal-download-desc'>File scaricabile per questa lezione (HTML o PDF)</span></div><button type='button' data-modal='card_2' data-filename='scheda-card-2.html' onclick='scaricaFileModale(this.dataset.modal, this.dataset.filename)' class='modal-download-btn'>📥 Scarica Scheda</button></div>"
   },
 
   // 5. CARD 3 (Unico pulsante in fondo alla Card 3)
   card_3: {
     tag: "Card 3",
     titolo: "Modale Card 3",
-    html: "<p>Contenuto didattico della Card 3. Testi di lettura, analisi sintattica e note di studio.</p><div class='modal-download-box'><div class='modal-download-info'><span class='modal-download-title'>Scheda di Lettura Card 3</span><span class='modal-download-desc'>File scaricabile per questa lezione (HTML o PDF)</span></div><button type='button' onclick=\"scaricaFileModale('card_3', 'scheda-card-3.html')\" class='modal-download-btn'>📥 Scarica Scheda</button></div>"
+    html: "<p>Contenuto didattico della Card 3. Testi di lettura, analisi sintattica e note di studio.</p><div class='modal-download-box'><div class='modal-download-info'><span class='modal-download-title'>Scheda di Lettura Card 3</span><span class='modal-download-desc'>File scaricabile per questa lezione (HTML o PDF)</span></div><button type='button' data-modal='card_3' data-filename='scheda-card-3.html' onclick='scaricaFileModale(this.dataset.modal, this.dataset.filename)' class='modal-download-btn'>📥 Scarica Scheda</button></div>"
   },
 
   // 6. CARD 4 (Unico pulsante in fondo alla Card 4)
   card_4: {
     tag: "Card 4",
     titolo: "Modale Card 4",
-    html: "<p>Contenuto didattico della Card 4. Visual story, calligrafia e ordine dei tratti.</p><div class='modal-download-box'><div class='modal-download-info'><span class='modal-download-title'>Materiale Calligrafico Card 4</span><span class='modal-download-desc'>File scaricabile per questa lezione (HTML o PDF)</span></div><button type='button' onclick=\"scaricaFileModale('card_4', 'scheda-card-4.html')\" class='modal-download-btn'>📥 Scarica Scheda</button></div>"
+    html: "<p>Contenuto didattico della Card 4. Visual story, calligrafia e ordine dei tratti.</p><div class='modal-download-box'><div class='modal-download-info'><span class='modal-download-title'>Materiale Calligrafico Card 4</span><span class='modal-download-desc'>File scaricabile per questa lezione (HTML o PDF)</span></div><button type='button' data-modal='card_4' data-filename='scheda-card-4.html' onclick='scaricaFileModale(this.dataset.modal, this.dataset.filename)' class='modal-download-btn'>📥 Scarica Scheda</button></div>"
   }
 };
 
@@ -2436,6 +2436,12 @@ var PDF_DATA = "";
 var PDF_NOME_FILE = "lezione-completa.pdf";
 
 function scaricaFileModale(chiave, nomeDefault) {
+  if (typeof chiave === "object" && chiave) {
+    if (chiave.dataset) {
+      nomeDefault = chiave.dataset.filename || chiave.dataset.file || nomeDefault;
+      chiave = chiave.dataset.modal || chiave.dataset.chiave || "";
+    }
+  }
   // 1. Cerca file incorporato in FILE_MODALI per questa card/modale
   if (typeof FILE_MODALI === "object" && FILE_MODALI && FILE_MODALI[chiave] && FILE_MODALI[chiave].data) {
     var fileObj = FILE_MODALI[chiave];
