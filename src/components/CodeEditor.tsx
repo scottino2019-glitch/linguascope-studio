@@ -9,7 +9,8 @@ import {
   ZoomIn, 
   ZoomOut, 
   WrapText,
-  FileText
+  FileText,
+  FolderOpen
 } from 'lucide-react';
 import { FontManager } from './FontManager.tsx';
 import { PdfManager } from './PdfManager.tsx';
@@ -146,7 +147,7 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
             <span>🔤 Google Fonts</span>
           </button>
 
-          {/* TAB 6: GESTIONE PDF */}
+          {/* TAB 6: GESTIONE FILE MODALI (PDF & HTML) */}
           <button
             type="button"
             onClick={() => setActiveTab('pdf')}
@@ -156,8 +157,8 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
                 : 'text-rose-400 hover:text-white hover:bg-slate-800'
             }`}
           >
-            <FileText className="w-3.5 h-3.5" />
-            <span>📄 Allega PDF</span>
+            <FolderOpen className="w-3.5 h-3.5" />
+            <span>📁 Allega File (PDF/HTML)</span>
           </button>
         </div>
 
@@ -257,7 +258,7 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
           <span>Le modifiche aggiornano istantaneamente l'anteprima</span>
         </div>
         <div>
-          {activeTab === 'pdf' ? 'Gestione PDF Standalone (Incorporato)' : activeTab === 'fonts' ? 'Tipografia & Google Fonts' : `${lines.length} righe · Modifica libera`}
+          {activeTab === 'pdf' ? 'Gestione File Modali (PDF & HTML Incorporati Senza Cartelle Esterne)' : activeTab === 'fonts' ? 'Tipografia & Google Fonts' : `${lines.length} righe · Modifica libera`}
         </div>
       </div>
 

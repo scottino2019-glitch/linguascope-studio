@@ -8,7 +8,8 @@ import {
   Eye, 
   Code2, 
   Columns2,
-  FileText
+  FileText,
+  FolderOpen
 } from 'lucide-react';
 
 interface HeaderProps {
@@ -209,16 +210,16 @@ export const Header: React.FC<HeaderProps> = ({
           )}
         </button>
 
-        {/* ALLEGA PDF (ACCESSO RAPIDO) */}
+        {/* ALLEGA FILE MODALI (PDF / HTML) */}
         {onOpenPdfTab && (
           <button
             type="button"
             onClick={onOpenPdfTab}
             className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-rose-50 hover:bg-rose-100 text-rose-700 text-xs font-bold border border-rose-300 transition-colors shadow-xs active:scale-95"
-            title="Gestisci o allega il tuo file PDF della lezione (incorporato direttamente nell'HTML)"
+            title="Gestisci o allega i tuoi file di lavoro (PDF e HTML) per i modali e le card (incorporati direttamente nel codice)"
           >
-            <FileText className="w-3.5 h-3.5 text-rose-600" />
-            <span>Allega PDF</span>
+            <FolderOpen className="w-3.5 h-3.5 text-rose-600" />
+            <span>Allega File (PDF/HTML)</span>
           </button>
         )}
 
