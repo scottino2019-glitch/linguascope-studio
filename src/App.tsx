@@ -110,6 +110,13 @@ export default function App() {
     setTimeout(() => setResetNotice(false), 2000);
   };
 
+  const handleOpenPdfTab = () => {
+    setActiveTab('pdf');
+    if (viewMode === 'preview') {
+      setViewMode('split');
+    }
+  };
+
   return (
     <div className={`flex flex-col h-screen w-screen overflow-hidden bg-slate-100 text-slate-900 font-sans ${isDragging ? 'cursor-col-resize select-none' : ''}`}>
       
@@ -125,6 +132,7 @@ export default function App() {
         onCopyAll={handleCopyAll}
         onReload={handleReload}
         onReset={handleReset}
+        onOpenPdfTab={handleOpenPdfTab}
         copied={copied}
         resetNotice={resetNotice}
       />

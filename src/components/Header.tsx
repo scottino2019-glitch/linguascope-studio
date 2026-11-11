@@ -7,7 +7,8 @@ import {
   RotateCw,
   Eye, 
   Code2, 
-  Columns2
+  Columns2,
+  FileText
 } from 'lucide-react';
 
 interface HeaderProps {
@@ -21,6 +22,7 @@ interface HeaderProps {
   onCopyAll: () => void;
   onReload: () => void;
   onReset: () => void;
+  onOpenPdfTab?: () => void;
   copied: boolean;
   resetNotice: boolean;
 }
@@ -36,6 +38,7 @@ export const Header: React.FC<HeaderProps> = ({
   onCopyAll,
   onReload,
   onReset,
+  onOpenPdfTab,
   copied,
   resetNotice,
 }) => {
@@ -205,6 +208,19 @@ export const Header: React.FC<HeaderProps> = ({
             </>
           )}
         </button>
+
+        {/* ALLEGA PDF (ACCESSO RAPIDO) */}
+        {onOpenPdfTab && (
+          <button
+            type="button"
+            onClick={onOpenPdfTab}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-rose-50 hover:bg-rose-100 text-rose-700 text-xs font-bold border border-rose-300 transition-colors shadow-xs active:scale-95"
+            title="Gestisci o allega il tuo file PDF della lezione (incorporato direttamente nell'HTML)"
+          >
+            <FileText className="w-3.5 h-3.5 text-rose-600" />
+            <span>Allega PDF</span>
+          </button>
+        )}
 
         {/* COPIA TUTTO */}
         <button

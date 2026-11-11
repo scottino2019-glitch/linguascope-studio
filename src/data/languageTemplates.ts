@@ -2232,7 +2232,7 @@ const CONTENUTI_SCHEDE = {
   video_3: {
     tag: "Script",
     titolo: "Trascrizione video",
-    html: "<div class='script-header-bar'><div><span class='script-scene-badge'>Scena 1 · Dialogo</span><div class='script-scene-title'>1 早餐摊 zǎocān tān · The breakfast stall</div></div><div class='script-btn-group'><a href='lezione.pdf' target='_blank' download='lezione-completa.pdf' class='script-pdf-btn' title='Scarica o apri il tuo file PDF completo'>📥 Scarica PDF Completo</a><button type='button' onclick='stampaTrascrizione()' class='script-print-btn' title='Stampa o salva in PDF l&rsquo;anteprima della Scena 1'>🖨️ Stampa Scena 1</button></div></div><div class='dialogue-list'><div class='dialogue-turn speaker-auntie'><div class='speaker-meta'><span class='speaker-name speaker-name-auntie'>阿姨 · Auntie</span><span class='turn-num'>#001</span></div><div class='pinyin-ruby-row'><ruby>早<rt>zǎo</rt></ruby><ruby>上<rt>shang</rt></ruby><ruby>好<rt>hǎo！</rt></ruby> <ruby>你<rt>nǐ</rt></ruby><ruby>要<rt>yào</rt></ruby><ruby>吃<rt>chī</rt></ruby><ruby>什<rt>shén</rt></ruby><ruby>么<rt>me？</rt></ruby></div><div class='english-trans'>&ldquo;Good morning! What would you like?&rdquo;</div></div><div class='dialogue-turn speaker-mike'><div class='speaker-meta'><span class='speaker-name speaker-name-mike'>Mike</span><span class='turn-num'>#002</span></div><div class='pinyin-ruby-row'><ruby>阿<rt>ā</rt></ruby><ruby>姨<rt>yí，</rt></ruby> <ruby>早<rt>zǎo</rt></ruby><ruby>上<rt>shang</rt></ruby><ruby>好<rt>hǎo！</rt></ruby> <ruby>这<rt>zhè</rt></ruby><ruby>是<rt>shì</rt></ruby><ruby>什<rt>shén</rt></ruby><ruby>么<rt>me？</rt></ruby></div><div class='english-trans'>&ldquo;Good morning! What&rsquo;s this?&rdquo;</div><div class='vocab-note'>💡 <strong>Glossario:</strong> 阿姨 āyí = auntie (termine affettuoso e cortese per una donna più anziana)</div></div><div class='dialogue-turn speaker-auntie'><div class='speaker-meta'><span class='speaker-name speaker-name-auntie'>阿姨 · Auntie</span><span class='turn-num'>#003</span></div><div class='pinyin-ruby-row'><ruby>这<rt>zhè</rt></ruby><ruby>是<rt>shì</rt></ruby><ruby>包<rt>bāo</rt></ruby><ruby>子<rt>zi，</rt></ruby> <ruby>很<rt>hěn</rt></ruby><ruby>好<rt>hǎo</rt></ruby><ruby>吃<rt>chī！</rt></ruby></div><div class='english-trans'>&ldquo;These are baozi. They&rsquo;re delicious!&rdquo;</div></div><div class='dialogue-turn speaker-mike'><div class='speaker-meta'><span class='speaker-name speaker-name-mike'>Mike</span><span class='turn-num'>#004</span></div><div class='pinyin-ruby-row'><ruby>包<rt>bāo</rt></ruby><ruby>子<rt>zi</rt></ruby> <ruby>多<rt>duō</rt></ruby><ruby>少<rt>shao</rt></ruby><ruby>钱<rt>qián</rt></ruby> <ruby>一<rt>yí</rt></ruby><ruby>个<rt>ge？</rt></ruby></div><div class='english-trans'>&ldquo;How much is one baozi?&rdquo;</div></div><div class='dialogue-turn speaker-auntie'><div class='speaker-meta'><span class='speaker-name speaker-name-auntie'>阿姨 · Auntie</span><span class='turn-num'>#005</span></div><div class='pinyin-ruby-row'><ruby>两<rt>liǎng</rt></ruby><ruby>块<rt>kuài</rt></ruby><ruby>钱<rt>qián</rt></ruby> <ruby>一<rt>yí</rt></ruby><ruby>个<rt>ge。</rt></ruby></div><div class='english-trans'>&ldquo;Two kuai each.&rdquo;</div></div></div><div class='pdf-footer-note'><span>💡 <strong>Come usare il tuo file PDF originale:</strong> Rinominalo in <code>lezione.pdf</code> e mettilo nella stessa cartella di questo file HTML (oppure inserisci il link da Google Drive o Dropbox): il pulsante in alto scaricher&agrave; direttamente l&rsquo;intero copione originale!</span></div>"
+    html: "<div class='script-header-bar'><div><span class='script-scene-badge'>Scena 1 · Dialogo</span><div class='script-scene-title'>1 早餐摊 zǎocān tān · The breakfast stall</div></div><div class='script-btn-group'><button type='button' onclick='scaricaPdfLezione(event)' class='script-pdf-btn' title='Scarica o apri il PDF completo della lezione'>📥 Scarica PDF Completo</button><button type='button' onclick='stampaTrascrizione()' class='script-print-btn' title='Stampa o salva in PDF la Scena 1'>🖨️ Stampa Scena 1</button></div></div><div class='dialogue-list'><div class='dialogue-turn speaker-auntie'><div class='speaker-meta'><span class='speaker-name speaker-name-auntie'>阿姨 · Auntie</span><span class='turn-num'>#001</span></div><div class='pinyin-ruby-row'><ruby>早<rt>zǎo</rt></ruby><ruby>上<rt>shang</rt></ruby><ruby>好<rt>hǎo！</rt></ruby> <ruby>你<rt>nǐ</rt></ruby><ruby>要<rt>yào</rt></ruby><ruby>吃<rt>chī</rt></ruby><ruby>什<rt>shén</rt></ruby><ruby>么<rt>me？</rt></ruby></div><div class='english-trans'>&ldquo;Good morning! What would you like?&rdquo;</div></div><div class='dialogue-turn speaker-mike'><div class='speaker-meta'><span class='speaker-name speaker-name-mike'>Mike</span><span class='turn-num'>#002</span></div><div class='pinyin-ruby-row'><ruby>阿<rt>ā</rt></ruby><ruby>姨<rt>yí，</rt></ruby> <ruby>早<rt>zǎo</rt></ruby><ruby>上<rt>shang</rt></ruby><ruby>好<rt>hǎo！</rt></ruby> <ruby>这<rt>zhè</rt></ruby><ruby>是<rt>shì</rt></ruby><ruby>什<rt>shén</rt></ruby><ruby>么<rt>me？</rt></ruby></div><div class='english-trans'>&ldquo;Good morning! What&rsquo;s this?&rdquo;</div><div class='vocab-note'>💡 <strong>Glossario:</strong> 阿姨 āyí = auntie (termine affettuoso e cortese per una donna più anziana)</div></div><div class='dialogue-turn speaker-auntie'><div class='speaker-meta'><span class='speaker-name speaker-name-auntie'>阿姨 · Auntie</span><span class='turn-num'>#003</span></div><div class='pinyin-ruby-row'><ruby>这<rt>zhè</rt></ruby><ruby>是<rt>shì</rt></ruby><ruby>包<rt>bāo</rt></ruby><ruby>子<rt>zi，</rt></ruby> <ruby>很<rt>hěn</rt></ruby><ruby>好<rt>hǎo</rt></ruby><ruby>吃<rt>chī！</rt></ruby></div><div class='english-trans'>&ldquo;These are baozi. They&rsquo;re delicious!&rdquo;</div></div><div class='dialogue-turn speaker-mike'><div class='speaker-meta'><span class='speaker-name speaker-name-mike'>Mike</span><span class='turn-num'>#004</span></div><div class='pinyin-ruby-row'><ruby>包<rt>bāo</rt></ruby><ruby>子<rt>zi</rt></ruby> <ruby>多<rt>duō</rt></ruby><ruby>少<rt>shao</rt></ruby><ruby>钱<rt>qián</rt></ruby> <ruby>一<rt>yí</rt></ruby><ruby>个<rt>ge？</rt></ruby></div><div class='english-trans'>&ldquo;How much is one baozi?&rdquo;</div></div><div class='dialogue-turn speaker-auntie'><div class='speaker-meta'><span class='speaker-name speaker-name-auntie'>阿姨 · Auntie</span><span class='turn-num'>#005</span></div><div class='pinyin-ruby-row'><ruby>两<rt>liǎng</rt></ruby><ruby>块<rt>kuài</rt></ruby><ruby>钱<rt>qián</rt></ruby> <ruby>一<rt>yí</rt></ruby><ruby>个<rt>ge。</rt></ruby></div><div class='english-trans'>&ldquo;Two kuai each.&rdquo;</div></div></div><div class='pdf-footer-note'><span>💡 <strong>Documento della Lezione:</strong> Clicca su &ldquo;Scarica PDF Completo&rdquo; per il file della lezione, oppure usa &ldquo;Stampa Scena 1&rdquo; per salvare la scheda come PDF stampabile.</span></div>"
   },
 
   // 4. CARD 2 (Unico pulsante in fondo alla Card 2)
@@ -2342,67 +2342,36 @@ function gestisciClickBackdrop(e) {
   }
 }
 
-// 6. FUNZIONE DI STAMPA E SALVATAGGIO PDF (100% VISIBILE E IMPAGINATA)
-function stampaTrascrizione() {
-  var modalBody = document.getElementById("modalBody");
-  var modalTitle = document.getElementById("modalTitle");
-  var modalTag = document.getElementById("modalTag");
+// 6. GESTIONE PDF E FUNZIONE DI STAMPA/SALVATAGGIO
+var PDF_DATA = "";
+var PDF_NOME_FILE = "lezione-completa.pdf";
 
-  var title = modalTitle ? modalTitle.textContent.trim() : "Trascrizione Video";
-  var tag = modalTag ? modalTag.textContent.trim() : "Scheda Didattica";
-  var htmlContent = modalBody ? modalBody.innerHTML : "";
-
-  // 1. Prova ad aprire una finestra di stampa pulita (formato A4 senza interferenze con card o iframes)
-  try {
-    var printWin = window.open("", "_blank", "width=850,height=950");
-    if (printWin) {
-      printWin.document.open();
-      printWin.document.write("<!DOCTYPE html><html><head><meta charset='utf-8'><title>" + title + " - PDF</title><style>" +
-        "@page { size: A4 portrait; margin: 15mm; }" +
-        "body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Noto Sans SC', sans-serif; color: #0f172a; margin: 0; padding: 24px; line-height: 1.6; background: #ffffff; }" +
-        ".print-header { border-bottom: 2px solid #2563eb; padding-bottom: 12px; margin-bottom: 20px; display: flex; justify-content: space-between; align-items: flex-end; }" +
-        ".print-badge { font-size: 12px; font-weight: 800; color: #2563eb; text-transform: uppercase; letter-spacing: 0.05em; }" +
-        ".print-title { font-size: 24px; font-weight: 800; margin: 4px 0 0; color: #0f172a; }" +
-        ".print-date { font-size: 11px; color: #64748b; }" +
-        ".script-pdf-btn, .modal-close-btn, .modal-close-x, .modal-close-cross { display: none !important; }" +
-        ".script-header-bar { background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 8px; padding: 12px 16px; margin-bottom: 16px; }" +
-        ".script-scene-badge { font-size: 11px; font-weight: bold; color: #1e40af; background: #dbeafe; padding: 3px 8px; border-radius: 4px; }" +
-        ".script-scene-title { font-size: 16px; font-weight: bold; margin-top: 4px; color: #0f172a; }" +
-        ".dialogue-list { display: flex; flex-direction: column; gap: 12px; }" +
-        ".dialogue-turn { background: #ffffff; border: 1px solid #cbd5e1; border-radius: 8px; padding: 12px 16px; page-break-inside: avoid; break-inside: avoid; }" +
-        ".dialogue-turn.speaker-auntie { border-left: 5px solid #d97706; }" +
-        ".dialogue-turn.speaker-mike { border-left: 5px solid #2563eb; }" +
-        ".speaker-meta { display: flex; justify-content: space-between; font-size: 11px; font-weight: 800; color: #64748b; margin-bottom: 6px; }" +
-        ".speaker-name-auntie { color: #d97706; font-size: 12px; }" +
-        ".speaker-name-mike { color: #2563eb; font-size: 12px; }" +
-        ".pinyin-ruby-row { font-size: 22px; line-height: 2.3; color: #0f172a; margin-bottom: 6px; letter-spacing: 0.04em; }" +
-        "ruby { ruby-align: center; margin: 0 2px; }" +
-        "rt { font-size: 11px; font-weight: 600; color: #475569; }" +
-        ".english-trans { font-size: 14px; color: #475569; font-style: italic; margin-top: 2px; }" +
-        ".vocab-note { margin-top: 8px; padding: 8px 12px; background: #fef3c7; border: 1px solid #fde68a; border-radius: 6px; font-size: 12px; color: #92400e; }" +
-        ".pdf-footer-note { margin-top: 20px; border-top: 1px solid #e2e8f0; padding-top: 10px; font-size: 11px; color: #64748b; text-align: center; }" +
-        "</style></head><body>" +
-        "<div class='print-header'><div><span class='print-badge'>" + tag + "</span><h1 class='print-title'>" + title + "</h1></div><div class='print-date'>Documento di Studio</div></div>" +
-        "<div class='print-content'>" + htmlContent + "</div>" +
-        "</body></html>");
-      printWin.document.close();
-      printWin.focus();
-      setTimeout(function() {
-        printWin.print();
-      }, 350);
-      return;
+function scaricaPdfLezione(e) {
+  if (e && e.preventDefault) e.preventDefault();
+  if (typeof PDF_DATA === "string" && PDF_DATA.trim().length > 0) {
+    var a = document.createElement("a");
+    a.href = PDF_DATA;
+    a.download = (typeof PDF_NOME_FILE === "string" && PDF_NOME_FILE.trim()) ? PDF_NOME_FILE : "lezione-completa.pdf";
+    if (PDF_DATA.indexOf("http") === 0) {
+      a.target = "_blank";
     }
-  } catch (err) {
-    console.warn("Finestra popup non consentita, avvio print sulla pagina:", err);
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  } else {
+    // Se nessun file PDF personalizzato è ancora allegato, avvia la stampa/salvataggio PDF
+    stampaTrascrizione();
   }
+}
 
-  // 2. Fallback diretto se popup è disattivato: la regola @media print sulla pagina è immune al foglio bianco
+function stampaTrascrizione() {
   window.print();
 }
 
 // Esporta globalmente su window per chiamata diretta da pulsanti o da LivePreview
 window.mostraScheda = mostraScheda;
 window.chiudiScheda = chiudiScheda;
+window.scaricaPdfLezione = scaricaPdfLezione;
 window.stampaTrascrizione = stampaTrascrizione;
 
 // Ascolta messaggi dall'esterno dell'iframe
