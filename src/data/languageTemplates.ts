@@ -1874,6 +1874,94 @@ h1, h2, h3, .header-title, .video-heading, .modal-window-title {
   color: #0f172a !important;
 }
 
+/* ========================================================
+   PULSANTI E RIQUADRI DOWNLOAD PDF DI LAVORO NEI MODALI
+   ======================================================== */
+.modal-download-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  background: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-radius: 12px;
+  padding: 14px 18px;
+  margin: 16px 0;
+  flex-wrap: wrap;
+}
+
+.modal-download-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.modal-download-title {
+  font-weight: 800;
+  font-size: 13px;
+  color: #0f172a;
+}
+
+.modal-download-desc {
+  font-size: 11px;
+  color: #64748b;
+}
+
+.modal-download-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #2563eb;
+  color: #ffffff !important;
+  text-decoration: none !important;
+  font-size: 13px;
+  font-weight: 800;
+  padding: 9px 18px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(37, 99, 235, 0.25);
+  transition: all 0.2s ease;
+}
+
+.modal-download-btn:hover {
+  background: #1d4ed8;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(37, 99, 235, 0.35);
+}
+
+.modal-download-btn-emerald {
+  background: #059669;
+  box-shadow: 0 2px 6px rgba(5, 150, 105, 0.25);
+}
+
+.modal-download-btn-emerald:hover {
+  background: #047857;
+  box-shadow: 0 4px 10px rgba(5, 150, 105, 0.35);
+}
+
+.modal-download-btn-amber {
+  background: #d97706;
+  box-shadow: 0 2px 6px rgba(217, 119, 6, 0.25);
+}
+
+.modal-download-btn-amber:hover {
+  background: #b45309;
+  box-shadow: 0 4px 10px rgba(217, 119, 6, 0.35);
+}
+
+.modal-download-btn-outline {
+  background: #ffffff;
+  color: #2563eb !important;
+  border: 1.5px solid #2563eb;
+  box-shadow: none;
+}
+
+.modal-download-btn-outline:hover {
+  background: #eff6ff;
+  color: #1d4ed8 !important;
+}
+
 .dialogue-list {
   display: flex;
   flex-direction: column;
