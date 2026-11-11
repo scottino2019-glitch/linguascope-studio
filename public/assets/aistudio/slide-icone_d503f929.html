@@ -1,0 +1,233 @@
+<!-- 4. CARD MORPHING CON DOCK ICONE CLICCABILI (HTML + CSS + JS PURO) -->
+<div class="card-morphing" id="morphingCard">
+  <!-- Dock Icone in Alto -->
+  <div class="cm-dock">
+    <div class="cm-dock-title">Seleziona Categoria:</div>
+    <div class="cm-icons-rail">
+      <button class="cm-cat-btn active" data-cat="bio">🌿 Bio-Design</button>
+      <button class="cm-cat-btn" data-cat="arch">🧭 Architettura</button>
+      <button class="cm-cat-btn" data-cat="scienza">✨ Scienze</button>
+      <button class="cm-cat-btn" data-cat="arte">🎨 Arti</button>
+      <button class="cm-cat-btn" data-cat="cinema">🎬 Cinema</button>
+    </div>
+  </div>
+
+  <!-- Foto che Cambia al Clic -->
+  <div class="cm-photo">
+    <img id="cmImage" src="https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?auto=format&fit=crop&w=700&q=80" alt="Notizia" />
+    <span class="cm-badge" id="cmBadge">Architettura Vivente</span>
+  </div>
+
+  <!-- Testi Dinamici -->
+  <div class="cm-content">
+    <h3 id="cmTitle" class="cm-title">Serre Sospese in Larice e Felci</h3>
+    <p id="cmDeck" class="cm-deck">I tetti delle metropoli si trasformano in giardini verticali fotosintetici a ventilazione naturale.</p>
+  </div>
+
+  <!-- Footer -->
+  <div class="cm-footer">
+    <span>⏱ 3 min di lettura</span>
+    <a href="#" class="cm-action-btn">Leggi Articolo →</a>
+  </div>
+</div>
+
+<style>
+.card-morphing {
+  width: 100%;
+  max-width: 360px;
+  border-radius: 38px;
+  padding: 20px;
+  background: linear-gradient(135deg, #059669 0%, #10B981 50%, #34D399 100%);
+  color: #ffffff;
+  box-shadow: 0 20px 45px rgba(16, 185, 129, 0.38);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  box-sizing: border-box;
+  transition: all 0.6s ease;
+}
+
+.cm-dock {
+  background: rgba(0, 0, 0, 0.25);
+  backdrop-filter: blur(12px);
+  padding: 10px 12px;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  margin-bottom: 14px;
+}
+
+.cm-dock-title {
+  font-size: 10px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 6px;
+}
+
+.cm-icons-rail {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.cm-cat-btn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 12px;
+  border-radius: 12px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.85);
+  border: none;
+  font-size: 12px;
+  font-weight: bold;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.cm-cat-btn.active {
+  background: #ffffff;
+  color: #111;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.cm-photo {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  border-radius: 24px;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  margin-bottom: 14px;
+}
+
+.cm-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: opacity 0.4s;
+}
+
+.cm-badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 5px 12px;
+  border-radius: 9999px;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.cm-title {
+  margin: 0 0 6px;
+  font-family: Georgia, serif;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.cm-deck {
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.cm-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 14px;
+  margin-top: 14px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  font-size: 12px;
+}
+
+.cm-action-btn {
+  padding: 8px 16px;
+  border-radius: 9999px;
+  background: #ffffff;
+  color: #111;
+  font-weight: bold;
+  text-decoration: none;
+}
+</style>
+
+<script>
+// DATI DELLE CATEGORIE E AGGIORNAMENTO DINAMICO
+(function() {
+  const card = document.getElementById('morphingCard');
+  const img = document.getElementById('cmImage');
+  const badge = document.getElementById('cmBadge');
+  const title = document.getElementById('cmTitle');
+  const deck = document.getElementById('cmDeck');
+  const buttons = document.querySelectorAll('.cm-cat-btn');
+
+  const topics = {
+    bio: {
+      gradient: 'linear-gradient(135deg, #059669 0%, #10B981 50%, #34D399 100%)',
+      shadow: '0 20px 45px rgba(16, 185, 129, 0.38)',
+      badge: 'Architettura Vivente',
+      title: 'Serre Sospese in Larice e Felci',
+      deck: 'I tetti delle metropoli si trasformano in giardini verticali fotosintetici a ventilazione naturale.',
+      img: 'https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?auto=format&fit=crop&w=700&q=80'
+    },
+    arch: {
+      gradient: 'linear-gradient(135deg, #D97706 0%, #F59E0B 50%, #FCD34D 100%)',
+      shadow: '0 20px 45px rgba(245, 158, 11, 0.38)',
+      badge: 'Energia Passiva',
+      title: 'Terra Cruda e Ritmo Solare',
+      deck: 'L’argilla battuta a strati regola l’inerzia termica senza consumare kilowattora di climatizzazione.',
+      img: 'https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=700&q=80'
+    },
+    scienza: {
+      gradient: 'linear-gradient(135deg, #0284C7 0%, #06B6D4 50%, #67E8F9 100%)',
+      shadow: '0 20px 45px rgba(6, 182, 212, 0.38)',
+      badge: 'Esplorazione Abissale',
+      title: 'Luce negli Abissi a 3000m',
+      deck: 'Nuove specie svelano il linguaggio della bioluminescenza sincronizzata nei fondali oceanici bui.',
+      img: 'https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=700&q=80'
+    },
+    arte: {
+      gradient: 'linear-gradient(135deg, #BE123C 0%, #E11D48 50%, #FDA4AF 100%)',
+      shadow: '0 20px 45px rgba(225, 29, 72, 0.38)',
+      badge: 'Scultura d’Autore',
+      title: 'Forme del Vuoto a Kyoto',
+      deck: 'Grandi vasi in ceramica e pietra calcarea grezza ridefiniscono la relazione tra scultura e spazio museale.',
+      img: 'https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=700&q=80'
+    },
+    cinema: {
+      gradient: 'linear-gradient(135deg, #4338CA 0%, #6366F1 50%, #A5B4FC 100%)',
+      shadow: '0 20px 45px rgba(99, 102, 241, 0.38)',
+      badge: 'Pellicola 35mm',
+      title: 'Vapore all’Alba nei Boschi',
+      deck: 'Un viaggio ferroviario slow-cinema in pellicola 35mm riscopre la contemplazione e il silenzio.',
+      img: 'https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=700&q=80'
+    }
+  };
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      const key = e.target.getAttribute('data-cat');
+      const data = topics[key];
+      if (!data) return;
+
+      buttons.forEach(b => b.classList.remove('active'));
+      e.target.classList.add('active');
+
+      card.style.background = data.gradient;
+      card.style.boxShadow = data.shadow;
+      badge.textContent = data.badge;
+      title.textContent = data.title;
+      deck.textContent = data.deck;
+      img.style.opacity = '0';
+      setTimeout(() => {
+        img.src = data.img;
+        img.style.opacity = '1';
+      }, 200);
+    });
+  });
+})();
+</script>

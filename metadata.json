@@ -1,0 +1,6 @@
+{
+  "name": "Linguascope Studio - Single-File Language Video & Cards Builder",
+  "description": "Editor e generatore di siti educativi a file singolo HTML+CSS+JS con video in primo piano e card interattive per lezioni di grammatica e scrittura (lingue orientali, occidentali e slave).",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

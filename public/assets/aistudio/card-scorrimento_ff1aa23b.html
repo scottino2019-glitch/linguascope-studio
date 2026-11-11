@@ -1,0 +1,239 @@
+<!-- 1. CARD A NASTRO CON TITOLO SCORREVOLE (HTML + CSS + JS PURO) -->
+<!-- Incolla questo codice direttamente nel tuo sito o in qualsiasi pagina HTML / WordPress / Webflow -->
+
+<div class="card-ribbon-marquee" id="ribbonCard">
+  <!-- Barra Superiore -->
+  <div class="crm-top">
+    <div class="crm-badge">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>
+      <span>Architettura</span>
+    </div>
+    <div class="crm-live">
+      <span class="crm-live-dot"></span>
+      <span>In tempo reale</span>
+    </div>
+  </div>
+
+  <!-- Blocco Centrale con Foto e Titolo Scorrevole -->
+  <div class="crm-body">
+    <div class="crm-avatar">
+      <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=400&q=80" alt="Padiglione" />
+    </div>
+
+    <div class="crm-marquee-track" id="marqueeTrack">
+      <div class="crm-track-header">
+        <span>Titolo a scorrimento:</span>
+        <button type="button" id="crmToggleBtn" class="crm-toggle-btn">Pausa</button>
+      </div>
+
+      <div class="crm-viewport">
+        <div class="crm-text-slider" id="crmTextSlider">
+          <span>Padiglioni in terra cruda: la nuova architettura solare ad Alentejo</span>
+          <span class="sep">✦</span>
+          <span>Pareti termiche naturali: -40% di dispersione senza climatizzatori</span>
+          <span class="sep">✦</span>
+          <span>La Biennale riscopre l'argilla viva e il legno grezzo</span>
+          <span class="sep">✦</span>
+          <!-- Duplicato per loop continuo senza interruzioni -->
+          <span>Padiglioni in terra cruda: la nuova architettura solare ad Alentejo</span>
+          <span class="sep">✦</span>
+          <span>Pareti termiche naturali: -40% di dispersione senza climatizzatori</span>
+          <span class="sep">✦</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Barra Inferiore -->
+  <div class="crm-footer">
+    <span class="crm-time">⏱ 3 min di lettura</span>
+    <a href="#" class="crm-btn-link">Apri Notizia →</a>
+  </div>
+</div>
+
+<style>
+/* STILE DELLA CARD */
+.card-ribbon-marquee {
+  width: 100%;
+  max-width: 420px;
+  border-radius: 36px;
+  padding: 20px;
+  background: linear-gradient(135deg, #FF5E62 0%, #FF7E5F 50%, #FEB47B 100%);
+  color: #ffffff;
+  box-shadow: 0 16px 40px rgba(255, 94, 98, 0.35);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  box-sizing: border-box;
+}
+
+.crm-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.crm-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 9999px;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.crm-live {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  background: rgba(0, 0, 0, 0.25);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.crm-live-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #6ee7b7;
+  animation: crmPulse 1.5s infinite;
+}
+
+.crm-body {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  padding: 12px;
+  border-radius: 26px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  margin-bottom: 14px;
+}
+
+.crm-avatar {
+  width: 76px;
+  height: 76px;
+  flex-shrink: 0;
+  border-radius: 18px;
+  overflow: hidden;
+  border: 2px solid rgba(255, 255, 255, 0.4);
+}
+
+.crm-avatar img {
+  width: 100%;
+  height: 100%;
+  object-cover: cover;
+  display: block;
+}
+
+.crm-marquee-track {
+  flex: 1;
+  overflow: hidden;
+}
+
+.crm-track-header {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 4px;
+}
+
+.crm-toggle-btn {
+  background: transparent;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.crm-viewport {
+  overflow: hidden;
+  white-space: nowrap;
+  width: 100%;
+  height: 28px;
+  display: flex;
+  align-items: center;
+}
+
+.crm-text-slider {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-family: Georgia, serif;
+  font-size: 15px;
+  font-weight: bold;
+  animation: crmMarquee 18s linear infinite;
+  will-change: transform;
+}
+
+.crm-text-slider .sep {
+  opacity: 0.6;
+  font-size: 11px;
+}
+
+.crm-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+}
+
+.crm-btn-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 16px;
+  border-radius: 9999px;
+  background: #ffffff;
+  color: #e11d48;
+  font-weight: bold;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+}
+
+.crm-btn-link:hover {
+  transform: scale(1.04);
+}
+
+@keyframes crmMarquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes crmPulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(1.2); }
+}
+</style>
+
+<script>
+// CONTROLLO PAUSA/AVVIO ALLO SCORRIMENTO
+(function() {
+  const track = document.getElementById('marqueeTrack');
+  const slider = document.getElementById('crmTextSlider');
+  const btn = document.getElementById('crmToggleBtn');
+  let isPaused = false;
+
+  function setPause(state) {
+    isPaused = state;
+    slider.style.animationPlayState = isPaused ? 'paused' : 'running';
+    btn.textContent = isPaused ? 'Riavvia' : 'Pausa';
+  }
+
+  track.addEventListener('mouseenter', () => setPause(true));
+  track.addEventListener('mouseleave', () => setPause(false));
+  btn.addEventListener('click', () => setPause(!isPaused));
+})();
+</script>
