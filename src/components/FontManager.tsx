@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import { Type, Sparkles, Check, Globe, RefreshCw, Layers } from 'lucide-react';
 
+import type { CourseLang } from '../data/languageTemplates.ts';
+
 interface FontManagerProps {
   css: string;
   setCss: (val: string) => void;
-  currentLang: 'orientali' | 'slave' | 'occidentali';
+  currentLang: CourseLang;
 }
 
 interface FontOption {
@@ -22,6 +24,22 @@ const PRESET_FONTS: Record<string, FontOption[]> = {
     { name: 'Noto Serif JP', category: 'Serif Editoriale', sample: '漢字の意味と部首の調和', isSerif: true },
     { name: 'M PLUS 1p', category: 'Arrotondato Moderno', sample: '分かりやすい文法と助詞' },
     { name: 'Yuji Boku', category: 'Pennello Calligrafico Shodo', sample: '墨の濃淡と筆圧の呼吸', isSerif: true }
+  ],
+  cinese: [
+    { name: 'Noto Sans SC', category: 'Sans-serif Semplificato', sample: '汉字笔顺与普通话语法 · 你好中国' },
+    { name: 'Noto Serif SC', category: 'Serif Editoriale (Songti)', sample: '汉语声调与部首结构 · 永字八法', isSerif: true },
+    { name: 'Noto Sans TC', category: 'Sans-serif Tradizionale', sample: '繁體中文書法與詞彙結構' },
+    { name: 'Ma Shan Zheng', category: 'Calligrafia a Pennello', sample: '龙飞凤舞 · 水墨书法之美', isSerif: true },
+    { name: 'ZCOOL XiaoWei', category: 'Serif Elegante Cinese', sample: '古典韵味与现代排版设计', isSerif: true },
+    { name: 'ZCOOL KuaiLe', category: 'Didattico & Vivace', sample: '快乐学汉语 · 拼音与对话' }
+  ],
+  coreano: [
+    { name: 'Noto Sans KR', category: 'Sans-serif Moderno (Gothic)', sample: '한국어 문법과 한글 자모 · 안녕하세요' },
+    { name: 'Noto Serif KR', category: 'Serif Classico (Batang)', sample: '한글 창제 원리와 받침의 조화', isSerif: true },
+    { name: 'Gowun Dodum', category: 'Pulito e Leggibile', sample: '초급 한국어 회화와 문장 구조' },
+    { name: 'Nanum Gothic', category: 'Standard Editoriale Coreano', sample: '존댓말과 조사 사용법 정리' },
+    { name: 'Jua', category: 'Arrotondato Didattico', sample: '재미있게 배우는 한국어 단어' },
+    { name: 'Black Han Sans', category: 'Display Impatto Titoli', sample: '한글 타이포그래피와 쓰기', isSerif: true }
   ],
   slave: [
     { name: 'Montserrat', category: 'Geometric Bold', sample: 'Русский язык и алфавит кириллица' },
@@ -56,12 +74,22 @@ export const FontManager: React.FC<FontManagerProps> = ({
   // Extract currently configured font variables from CSS
   const getBodyFont = () => {
     const m = css.match(/--font-body:\s*'([^']+)'/);
-    return m ? m[1] : (currentLang === 'orientali' ? 'Noto Sans JP' : currentLang === 'slave' ? 'Montserrat' : 'Plus Jakarta Sans');
+    if (m) return m[1];
+    if (currentLang === 'orientali') return 'Noto Sans JP';
+    if (currentLang === 'cinese') return 'Noto Sans SC';
+    if (currentLang === 'coreano') return 'Noto Sans KR';
+    if (currentLang === 'slave') return 'Montserrat';
+    return 'Plus Jakarta Sans';
   };
 
   const getHeadingFont = () => {
     const m = css.match(/--font-heading:\s*'([^']+)'/);
-    return m ? m[1] : (currentLang === 'orientali' ? 'Noto Serif JP' : currentLang === 'slave' ? 'Playfair Display' : 'Cinzel');
+    if (m) return m[1];
+    if (currentLang === 'orientali') return 'Noto Serif JP';
+    if (currentLang === 'cinese') return 'Noto Serif SC';
+    if (currentLang === 'coreano') return 'Noto Serif KR';
+    if (currentLang === 'slave') return 'Playfair Display';
+    return 'Cinzel';
   };
 
   const getBaseFontSize = () => {
@@ -167,7 +195,7 @@ export const FontManager: React.FC<FontManagerProps> = ({
           )}
         </div>
         <p className="text-blue-300">
-          Hai il pieno controllo sui caratteri tipografici: puoi selezionare font nativi per scritture orientali (Giapponese, Cinese), slave (Russo, Cirillico), occidentali (Latino) o digitare <strong>qualsiasi nome di Google Font esistente al mondo</strong>.
+          Hai il pieno controllo sui caratteri tipografici: puoi selezionare font nativi per scritture orientali (Giapponese, Cinese, Coreano), slave (Russo, Cirillico), occidentali (Latino) o digitare <strong>qualsiasi nome di Google Font esistente al mondo</strong>.
         </p>
       </div>
 
@@ -297,7 +325,18 @@ export const FontManager: React.FC<FontManagerProps> = ({
             <div className="flex items-center justify-between gap-2 mb-3">
               <div className="flex items-center gap-2 font-bold text-slate-200 text-sm">
                 <Layers className="w-4 h-4 text-rose-400" />
-                <span>Font Raccomandati per {currentLang === 'orientali' ? 'Giapponese / CJK' : currentLang === 'slave' ? 'Russo / Cirillico' : 'Italiano / Latino'}</span>
+                <span>
+                  Font Raccomandati per{' '}
+                  {currentLang === 'orientali'
+                    ? 'Giapponese / CJK'
+                    : currentLang === 'cinese'
+                    ? 'Cinese / Hanzi'
+                    : currentLang === 'coreano'
+                    ? 'Coreano / Hangul'
+                    : currentLang === 'slave'
+                    ? 'Russo / Cirillico'
+                    : 'Italiano / Latino'}
+                </span>
               </div>
               <span className="text-[11px] text-slate-400 font-mono">1 Clic per Assegnare</span>
             </div>

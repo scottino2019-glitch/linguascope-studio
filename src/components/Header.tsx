@@ -9,12 +9,14 @@ import {
   Code2, 
   Columns2,
   FileText,
-  FolderOpen
+  FolderOpen,
+  Image as ImageIcon
 } from 'lucide-react';
+import type { CourseLang } from '../data/languageTemplates.ts';
 
 interface HeaderProps {
-  currentLang: 'orientali' | 'slave' | 'occidentali';
-  onChangeLang: (lang: 'orientali' | 'slave' | 'occidentali') => void;
+  currentLang: CourseLang;
+  onChangeLang: (lang: CourseLang) => void;
   viewMode: 'preview' | 'code' | 'split';
   setViewMode: (mode: 'preview' | 'code' | 'split') => void;
   splitProportion: 'wide-preview' | 'balanced' | 'wide-code' | 'stacked';
@@ -24,6 +26,7 @@ interface HeaderProps {
   onReload: () => void;
   onReset: () => void;
   onOpenPdfTab?: () => void;
+  onOpenImagesTab?: () => void;
   copied: boolean;
   resetNotice: boolean;
 }
@@ -40,6 +43,7 @@ export const Header: React.FC<HeaderProps> = ({
   onReload,
   onReset,
   onOpenPdfTab,
+  onOpenImagesTab,
   copied,
   resetNotice,
 }) => {
@@ -51,24 +55,50 @@ export const Header: React.FC<HeaderProps> = ({
         <span className="text-[11px] font-black uppercase tracking-wider text-slate-500 hidden sm:inline">
           Corso:
         </span>
-        <div className="flex items-center bg-slate-100 p-1 rounded-xl border border-slate-300 gap-1">
+        <div className="flex items-center flex-wrap bg-slate-100 p-1 rounded-xl border border-slate-300 gap-1">
           <button
             type="button"
             onClick={() => onChangeLang('orientali')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-bold text-xs transition-all ${
+            className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg font-bold text-xs transition-all ${
               currentLang === 'orientali'
                 ? 'bg-rose-600 text-white shadow-xs'
                 : 'text-slate-700 hover:text-slate-900 hover:bg-slate-200'
             }`}
           >
             <span>🇯🇵</span>
-            <span>Orientali</span>
+            <span>Giapponese</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => onChangeLang('cinese')}
+            className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg font-bold text-xs transition-all ${
+              currentLang === 'cinese'
+                ? 'bg-red-600 text-white shadow-xs'
+                : 'text-slate-700 hover:text-slate-900 hover:bg-slate-200'
+            }`}
+          >
+            <span>🇨🇳</span>
+            <span>Cinese</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => onChangeLang('coreano')}
+            className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg font-bold text-xs transition-all ${
+              currentLang === 'coreano'
+                ? 'bg-teal-600 text-white shadow-xs'
+                : 'text-slate-700 hover:text-slate-900 hover:bg-slate-200'
+            }`}
+          >
+            <span>🇰🇷</span>
+            <span>Coreano</span>
           </button>
 
           <button
             type="button"
             onClick={() => onChangeLang('slave')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-bold text-xs transition-all ${
+            className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg font-bold text-xs transition-all ${
               currentLang === 'slave'
                 ? 'bg-indigo-600 text-white shadow-xs'
                 : 'text-slate-700 hover:text-slate-900 hover:bg-slate-200'
@@ -81,7 +111,7 @@ export const Header: React.FC<HeaderProps> = ({
           <button
             type="button"
             onClick={() => onChangeLang('occidentali')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg font-bold text-xs transition-all ${
+            className={`flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg font-bold text-xs transition-all ${
               currentLang === 'occidentali'
                 ? 'bg-blue-600 text-white shadow-xs'
                 : 'text-slate-700 hover:text-slate-900 hover:bg-slate-200'
@@ -209,6 +239,19 @@ export const Header: React.FC<HeaderProps> = ({
             </>
           )}
         </button>
+
+        {/* GESTISCI IMMAGINI DELLE CARD */}
+        {onOpenImagesTab && (
+          <button
+            type="button"
+            onClick={onOpenImagesTab}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-amber-50 hover:bg-amber-100 text-amber-800 text-xs font-bold border border-amber-300 transition-colors shadow-xs active:scale-95"
+            title="Cambia le immagini delle Card 2, 3, 4 e Avatar Card 1"
+          >
+            <ImageIcon className="w-3.5 h-3.5 text-amber-600" />
+            <span>Immagini Card</span>
+          </button>
+        )}
 
         {/* ALLEGA FILE MODALI (PDF / HTML) */}
         {onOpenPdfTab && (

@@ -2,10 +2,10 @@ import React, { useState, useMemo, useEffect } from 'react';
 import { Header } from './components/Header.tsx';
 import { CodeEditor, EditorTab } from './components/CodeEditor.tsx';
 import { LivePreview } from './components/LivePreview.tsx';
-import { LANGUAGE_TEMPLATES, buildSingleFileHtml } from './data/languageTemplates.ts';
+import { LANGUAGE_TEMPLATES, buildSingleFileHtml, CourseLang } from './data/languageTemplates.ts';
 
 export default function App() {
-  const [currentLang, setCurrentLang] = useState<'orientali' | 'slave' | 'occidentali'>('orientali');
+  const [currentLang, setCurrentLang] = useState<CourseLang>('orientali');
   
   const currentTemplate = LANGUAGE_TEMPLATES[currentLang];
   
@@ -60,7 +60,7 @@ export default function App() {
   }, [isDragging]);
 
   // Cambio lingua pulito: aggiorna tutto il template senza mischiare le lingue
-  const handleChangeLang = (newLang: 'orientali' | 'slave' | 'occidentali') => {
+  const handleChangeLang = (newLang: CourseLang) => {
     setCurrentLang(newLang);
     const tmpl = LANGUAGE_TEMPLATES[newLang];
     setHtml(tmpl.html);
@@ -117,6 +117,13 @@ export default function App() {
     }
   };
 
+  const handleOpenImagesTab = () => {
+    setActiveTab('images');
+    if (viewMode === 'preview') {
+      setViewMode('split');
+    }
+  };
+
   return (
     <div className={`flex flex-col h-screen w-screen overflow-hidden bg-slate-100 text-slate-900 font-sans ${isDragging ? 'cursor-col-resize select-none' : ''}`}>
       
@@ -133,6 +140,7 @@ export default function App() {
         onReload={handleReload}
         onReset={handleReset}
         onOpenPdfTab={handleOpenPdfTab}
+        onOpenImagesTab={handleOpenImagesTab}
         copied={copied}
         resetNotice={resetNotice}
       />

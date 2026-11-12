@@ -10,12 +10,15 @@ import {
   ZoomOut, 
   WrapText,
   FileText,
-  FolderOpen
+  FolderOpen,
+  Image as ImageIcon
 } from 'lucide-react';
 import { FontManager } from './FontManager.tsx';
 import { PdfManager } from './PdfManager.tsx';
+import { ImageManager } from './ImageManager.tsx';
+import type { CourseLang } from '../data/languageTemplates.ts';
 
-export type EditorTab = 'html' | 'css' | 'js' | 'full' | 'fonts' | 'pdf';
+export type EditorTab = 'html' | 'css' | 'js' | 'full' | 'fonts' | 'images' | 'pdf';
 
 interface CodeEditorProps {
   activeTab: EditorTab;
@@ -27,7 +30,7 @@ interface CodeEditorProps {
   js: string;
   setJs: (val: string) => void;
   fullCode: string;
-  currentLang?: 'orientali' | 'slave' | 'occidentali';
+  currentLang?: CourseLang;
 }
 
 export const CodeEditor: React.FC<CodeEditorProps> = ({
@@ -147,7 +150,21 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
             <span>🔤 Google Fonts</span>
           </button>
 
-          {/* TAB 6: GESTIONE FILE MODALI (PDF & HTML) */}
+          {/* TAB 6: IMMAGINI CARD */}
+          <button
+            type="button"
+            onClick={() => setActiveTab('images')}
+            className={`flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-bold transition-all ${
+              activeTab === 'images'
+                ? 'bg-amber-600 text-white shadow-md font-bold'
+                : 'text-amber-400 hover:text-white hover:bg-slate-800'
+            }`}
+          >
+            <ImageIcon className="w-3.5 h-3.5" />
+            <span>🖼️ Immagini Card</span>
+          </button>
+
+          {/* TAB 7: GESTIONE FILE MODALI (PDF & HTML) */}
           <button
             type="button"
             onClick={() => setActiveTab('pdf')}
@@ -163,7 +180,7 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
         </div>
 
         {/* CONTROLLI EDITING (DISPONIBILI NELLE SCHEDE DI CODICE) */}
-        {activeTab !== 'fonts' && activeTab !== 'pdf' && (
+        {activeTab !== 'fonts' && activeTab !== 'images' && activeTab !== 'pdf' && (
           <div className="flex items-center gap-2 shrink-0">
             <div className="flex items-center bg-slate-900 px-2 py-1 rounded-xl border border-slate-700 text-xs">
               <span className="text-[11px] font-bold text-slate-400 mr-1.5">Font:</span>
@@ -218,6 +235,12 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
           js={js}
           setJs={setJs}
         />
+      ) : activeTab === 'images' ? (
+        <ImageManager
+          html={html}
+          setHtml={setHtml}
+          currentLang={currentLang}
+        />
       ) : activeTab === 'fonts' ? (
         <FontManager
           css={css}
@@ -258,7 +281,13 @@ export const CodeEditor: React.FC<CodeEditorProps> = ({
           <span>Le modifiche aggiornano istantaneamente l'anteprima</span>
         </div>
         <div>
-          {activeTab === 'pdf' ? 'Gestione File Modali (PDF & HTML Incorporati Senza Cartelle Esterne)' : activeTab === 'fonts' ? 'Tipografia & Google Fonts' : `${lines.length} righe · Modifica libera`}
+          {activeTab === 'pdf'
+            ? 'Gestione File Modali (PDF & HTML Incorporati Senza Cartelle Esterne)'
+            : activeTab === 'images'
+            ? 'Gestione Immagini Card 1, 2, 3 e 4 (File Locali o Link URL)'
+            : activeTab === 'fonts'
+            ? 'Tipografia & Google Fonts'
+            : `${lines.length} righe · Modifica libera`}
         </div>
       </div>
 

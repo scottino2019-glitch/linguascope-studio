@@ -5,8 +5,10 @@
  * - Pulsante "📖 Scheda Lezione (Modale)" visibile sia sulle card sia nell'intestazione
  */
 
+export type CourseLang = 'orientali' | 'cinese' | 'coreano' | 'slave' | 'occidentali';
+
 export interface LanguageTemplate {
-  id: 'orientali' | 'slave' | 'occidentali';
+  id: CourseLang;
   name: string;
   flag: string;
   langTitle: string;
@@ -248,7 +250,7 @@ const ORIENTALI_HTML = `<!-- ===================================================
           <button type="button" class="cvs-nav-btn next" id="cvsNext">›</button>
         </div>
 
-        <div class="cvs-dots">
+        <div class="cvs-dots" id="cvsDots">
           <button type="button" class="dot active" data-index="0"></button>
           <button type="button" class="dot" data-index="1"></button>
           <button type="button" class="dot" data-index="2"></button>
@@ -522,7 +524,7 @@ const SLAVE_HTML = `<!-- ====================================================
           <button type="button" class="cvs-nav-btn next" id="cvsNext">›</button>
         </div>
 
-        <div class="cvs-dots">
+        <div class="cvs-dots" id="cvsDots">
           <button type="button" class="dot active" data-index="0"></button>
           <button type="button" class="dot" data-index="1"></button>
           <button type="button" class="dot" data-index="2"></button>
@@ -794,7 +796,7 @@ const OCCIDENTALI_HTML = `<!-- =================================================
           <button type="button" class="cvs-nav-btn next" id="cvsNext">›</button>
         </div>
 
-        <div class="cvs-dots">
+        <div class="cvs-dots" id="cvsDots">
           <button type="button" class="dot active" data-index="0"></button>
           <button type="button" class="dot" data-index="1"></button>
           <button type="button" class="dot" data-index="2"></button>
@@ -838,17 +840,557 @@ const OCCIDENTALI_HTML = `<!-- =================================================
 </div>`;
 
 // ==========================================================================
+// 4. TEMPLATE CINESE (MANDARINO)
+// ==========================================================================
+const CINESE_HTML = `<!-- ====================================================
+     PORTALE DI APPRENDIMENTO: LINGUA CINESE (MANDARINO)
+     ==================================================== -->
+<div class="site-container">
+
+  <header class="main-header">
+    <div class="header-top-row">
+      <div class="header-badge">🇨🇳 Lingua Cinese</div>
+      <button type="button" class="header-modal-btn" onclick="mostraScheda('indice')">
+        📖 Apri Modale Lezioni
+      </button>
+    </div>
+    <h1 class="header-title">Corso di Lingua Cinese: Hanzi, Toni e Grammatica</h1>
+    <p class="header-desc">Lezioni pratiche su caratteri Hanzi, ordine dei tratti (Bǐshùn), Pinyin, 4 toni e particelle.</p>
+  </header>
+
+  <main class="portal-stage">
+
+    <!-- COLONNA SINISTRA -->
+    <div class="col-side">
+
+      <!-- CARD 1: NASTRO SCORREVOLE REGOLE -->
+      <div class="card-ribbon-marquee" id="ribbonCard">
+        <div class="crm-top">
+          <div class="crm-badge">Ordine dei Tratti (笔顺)</div>
+          <div class="crm-live">
+            <span class="crm-live-dot"></span>
+            <span>In tempo reale</span>
+          </div>
+        </div>
+
+        <div class="crm-body">
+          <div class="crm-avatar">
+            <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=400&q=80" alt="Hanzi" />
+          </div>
+
+          <div class="crm-marquee-track" id="marqueeTrack">
+            <div class="crm-track-header">
+              <span>Regole dei Tratti Cinesi (Bǐshùn) · Clicca una regola:</span>
+              <button type="button" id="crmToggleBtn" class="crm-toggle-btn">Pausa</button>
+            </div>
+
+            <div class="crm-viewport">
+              <div class="crm-text-slider" id="crmTextSlider">
+                <button type="button" class="crm-rule-chip" onclick="mostraScheda('card_1_1')">1. Card 1.1 📖</button>
+                <span class="sep">✦</span>
+                <button type="button" class="crm-rule-chip" onclick="mostraScheda('card_1_2')">2. Card 1.2 📖</button>
+                <span class="sep">✦</span>
+                <button type="button" class="crm-rule-chip" onclick="mostraScheda('card_1_3')">3. Card 1.3 📖</button>
+                <span class="sep">✦</span>
+                <button type="button" class="crm-rule-chip" onclick="mostraScheda('card_1_4')">4. Card 1.4 📖</button>
+                <span class="sep">✦</span>
+                <button type="button" class="crm-rule-chip" onclick="mostraScheda('card_1_1')">1. Card 1.1 📖</button>
+                <span class="sep">✦</span>
+                <button type="button" class="crm-rule-chip" onclick="mostraScheda('card_1_2')">2. Card 1.2 📖</button>
+                <span class="sep">✦</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="crm-pills-row">
+          <span class="crm-pills-label">Modali Card 1 (Clicca per aprire):</span>
+          <button type="button" class="crm-mini-pill" onclick="mostraScheda('card_1_1')">Card 1.1</button>
+          <button type="button" class="crm-mini-pill" onclick="mostraScheda('card_1_2')">Card 1.2</button>
+          <button type="button" class="crm-mini-pill" onclick="mostraScheda('card_1_3')">Card 1.3</button>
+          <button type="button" class="crm-mini-pill" onclick="mostraScheda('card_1_4')">Card 1.4</button>
+        </div>
+
+        <div class="crm-footer">
+          <span>⏱ 2 min di lettura</span>
+          <button type="button" class="crm-btn-link" onclick="mostraScheda('card_1')">📖 Modale Card 1 →</button>
+        </div>
+      </div>
+
+      <!-- CARD 2: MORPHING SISTEMI DEL CINESE -->
+      <div class="card-morphing" id="morphingCard">
+        <div class="cm-dock">
+          <div class="cm-dock-title">Fondamenti del Cinese:</div>
+          <div class="cm-icons-rail">
+            <button type="button" class="cm-cat-btn active" data-badge="Caratteri" data-title="Hanzi (汉字): I Logogrammi" data-deck="Ogni carattere rappresenta una sillaba e un morfema. I 214 radicali (部首) rivelano il significato e la fonetica." data-img="https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=700&q=80">Hanzi</button>
+            <button type="button" class="cm-cat-btn" data-badge="Fonetica" data-title="Pinyin (拼音): Trascrizione Fonetica" data-deck="Sistema ufficiale basato sull'alfabeto latino per leggere e pronunciare con esattezza ogni sillaba mandarina." data-img="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=700&q=80">Pinyin</button>
+            <button type="button" class="cm-cat-btn" data-badge="Intonazione" data-title="I 4 Toni (四声): Mā Má Mǎ Mà" data-deck="L'altezza e l'andamento della voce cambiano completamente il significato della parola (es. 妈 mamma vs 马 cavallo)." data-img="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=700&q=80">4 Toni</button>
+          </div>
+        </div>
+
+        <div class="cm-photo">
+          <img id="cmImage" src="https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=700&q=80" alt="Cinese" />
+          <span class="cm-badge" id="cmBadge">Caratteri</span>
+        </div>
+
+        <div class="cm-content">
+          <h3 id="cmTitle" class="cm-title">Hanzi (汉字): I Logogrammi</h3>
+          <p id="cmDeck" class="cm-deck">Ogni carattere rappresenta una sillaba e un morfema. I 214 radicali (部首) rivelano il significato e la fonetica.</p>
+        </div>
+
+        <div class="cm-footer">
+          <span>⏱ 3 min di studio</span>
+          <button type="button" class="cm-action-btn" onclick="mostraScheda('card_2')">Apri Modale Card 2 →</button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- COLONNA CENTRALE: VIDEO IN PRIMO PIANO -->
+    <div class="col-center-video">
+      <div class="video-main-card">
+        <div class="video-card-header">
+          <span class="video-badge-pill">Masterclass Video in Primo Piano</span>
+          <h2 class="video-heading">Corso di Cinese Quotidiano: Mike a Shanghai</h2>
+          <p class="video-desc">Guarda il video della lezione di conversazione quotidiana con Pinyin e trascrizione.</p>
+        </div>
+
+        <div class="video-box">
+          <iframe
+            id="videoPlayer"
+            class="video-player"
+            src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ"
+            title="Video Lezione Cinese"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          ></iframe>
+        </div>
+
+        <div class="video-rules-row">
+          <div class="rule-box" onclick="mostraScheda('video_1')">
+            <span class="rule-tag">HSK 1</span>
+            <h4>Vocaboli essenziali</h4>
+            <p>15 vocaboli quotidiani con minutaggio del video. Clicca per aprire.</p>
+          </div>
+          <div class="rule-box" onclick="mostraScheda('video_2')">
+            <span class="rule-tag">HSK 3</span>
+            <h4>Nuove parole</h4>
+            <p>I 4 vocaboli non HSK 1 spiegati. Clicca per aprire.</p>
+          </div>
+          <div class="rule-box" onclick="mostraScheda('video_3')">
+            <span class="rule-tag">Script</span>
+            <h4>Trascrizione video</h4>
+            <p>Trascrizione completa con Hanzi, Pinyin e traduzione. Clicca per aprire.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COLONNA DESTRA -->
+    <div class="col-side">
+
+      <!-- CARD 3: SLIDER GRAMMATICA CINESE -->
+      <div class="card-chapter-reader">
+        <div class="ccr-top">
+          <span class="ccr-badge">✦ Grammatica Mandarina</span>
+          <div class="ccr-arrows">
+            <button type="button" id="ccrPrev" class="ccr-arrow">‹</button>
+            <span id="ccrIndex" class="ccr-index">01 / 03</span>
+            <button type="button" id="ccrNext" class="ccr-arrow">›</button>
+          </div>
+        </div>
+
+        <div class="ccr-photo">
+          <img src="https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?auto=format&fit=crop&w=700&q=80" alt="Grammatica Cinese" />
+          <div class="ccr-photo-tag">Struttura SVO, Classificatori &amp; Particelle</div>
+        </div>
+
+        <div class="ccr-slider-dock">
+          <div class="ccr-tabs">
+            <button type="button" class="ccr-tab active" data-step="0">01. Ordine SVO</button>
+            <button type="button" class="ccr-tab" data-step="1">02. Classificatori</button>
+            <button type="button" class="ccr-tab" data-step="2">03. Particella 了</button>
+          </div>
+
+          <div class="ccr-prose-viewport">
+            <div class="ccr-prose-track" id="ccrProseTrack">
+              <div class="ccr-slide">
+                <div class="eyebrow">Sintassi Senza Coniugazioni</div>
+                <h4>Soggetto + Tempo + Verbo + Oggetto</h4>
+                <p>I verbi cinesi sono invariabili: il tempo si indica con avverbi (明天 domani, 昨天 ieri) prima del verbo.</p>
+              </div>
+              <div class="ccr-slide">
+                <div class="eyebrow">Tra Numero e Sostantivo</div>
+                <h4>I Classificatori (量词 Liàngcí)</h4>
+                <p>Obbligatori per contare: 一个人 (yí gè rén, una persona), 一杯茶 (yì bēi chá, una tazza di tè).</p>
+              </div>
+              <div class="ccr-slide">
+                <div class="eyebrow">Aspetto e Cambiamento</div>
+                <h4>La Particella Aspettuale 了 (LE)</h4>
+                <p>Segnala un'azione completata dopo il verbo oppure un cambiamento di stato a fine frase (下雨了, ha iniziato a piovere).</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ccr-footer">
+          <span>⏱ 4 min di studio</span>
+          <button type="button" class="ccr-btn" onclick="mostraScheda('card_3')">Apri Modale Card 3 →</button>
+        </div>
+      </div>
+
+      <!-- CARD 4: GALLERIA CALLIGRAFIA CINESE -->
+      <div class="card-visual-story" id="photoSliderCard">
+        <div class="cvs-header">
+          <span class="cvs-badge">🖌 Calligrafia Cinese</span>
+          <span class="cvs-counter" id="cvsCounter">1 / 3</span>
+        </div>
+
+        <div class="cvs-slider-box">
+          <div class="cvs-track" id="cvsTrack">
+            <div class="cvs-slide">
+              <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=700&q=80" alt="Tratto Orizzontale" />
+              <div class="cvs-caption">1. Héng (一): tratto orizzontale da sinistra a destra con leggero slancio verso l'alto</div>
+            </div>
+            <div class="cvs-slide">
+              <img src="https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=700&q=80" alt="Tratto Verticale" />
+              <div class="cvs-caption">2. Shù (丨): discesa verticale centrale che sorregge l'equilibrio del carattere</div>
+            </div>
+            <div class="cvs-slide">
+              <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=700&q=80" alt="Piě e Nà" />
+              <div class="cvs-caption">3. Piě (丿) e Nà (㇏): tratti obliqui simmetrici a coda di rondine</div>
+            </div>
+          </div>
+
+          <button type="button" class="cvs-nav-btn prev" id="cvsPrev">‹</button>
+          <button type="button" class="cvs-nav-btn next" id="cvsNext">›</button>
+        </div>
+
+        <div class="cvs-dots" id="cvsDots">
+          <button type="button" class="dot active" data-index="0"></button>
+          <button type="button" class="dot" data-index="1"></button>
+          <button type="button" class="dot" data-index="2"></button>
+        </div>
+
+        <div class="cvs-details">
+          <h3 class="cvs-title">Gli Otto Tratti del Carattere 永 (Yǒng)</h3>
+          <div class="cvs-footer">
+            <span>Sequenza visiva</span>
+            <button type="button" class="cvs-link" onclick="mostraScheda('card_4')">Apri Modale Card 4 →</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- MODALE OVERLAY -->
+  <div id="schedaModal" class="modal-overlay" onclick="gestisciClickBackdrop(event)">
+    <div class="modal-window">
+      <div class="modal-window-header">
+        <div>
+          <span class="modal-badge-tag" id="modalTag">Scheda Didattica</span>
+          <h3 class="modal-window-title" id="modalTitle">Titolo Scheda</h3>
+        </div>
+        <button type="button" class="modal-close-x" onclick="chiudiScheda()" aria-label="Chiudi Modale">✕</button>
+      </div>
+
+      <div class="modal-window-body" id="modalBody">
+        <!-- Contenuto dinamico della lezione -->
+      </div>
+
+      <div class="modal-window-footer">
+        <span class="modal-footer-note">Premi ✕ o clicca all'esterno per chiudere.</span>
+        <button type="button" class="modal-close-btn" onclick="chiudiScheda()">Chiudi Scheda</button>
+      </div>
+    </div>
+  </div>
+
+</div>`;
+
+// ==========================================================================
+// 5. TEMPLATE COREANO (HANGUL)
+// ==========================================================================
+const COREANO_HTML = `<!-- ====================================================
+     PORTALE DI APPRENDIMENTO: LINGUA COREANA (HANGUL)
+     ==================================================== -->
+<div class="site-container">
+
+  <header class="main-header">
+    <div class="header-top-row">
+      <div class="header-badge">🇰🇷 Lingua Coreana</div>
+      <button type="button" class="header-modal-btn" onclick="mostraScheda('indice')">
+        📖 Apri Modale Lezioni
+      </button>
+    </div>
+    <h1 class="header-title">Corso di Lingua Coreana: Alfabeto Hangul e Grammatica</h1>
+    <p class="header-desc">Lezioni pratiche su blocchi sillabici 한글, Batchim, particelle e livelli di cortesia.</p>
+  </header>
+
+  <main class="portal-stage">
+
+    <!-- COLONNA SINISTRA -->
+    <div class="col-side">
+
+      <!-- CARD 1: NASTRO SCORREVOLE REGOLE -->
+      <div class="card-ribbon-marquee" id="ribbonCard">
+        <div class="crm-top">
+          <div class="crm-badge">Regole Hangul (한글)</div>
+          <div class="crm-live">
+            <span class="crm-live-dot"></span>
+            <span>In tempo reale</span>
+          </div>
+        </div>
+
+        <div class="crm-body">
+          <div class="crm-avatar">
+            <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=400&q=80" alt="Hangul" />
+          </div>
+
+          <div class="crm-marquee-track" id="marqueeTrack">
+            <div class="crm-track-header">
+              <span>Scrittura e Pronuncia Coreana · Clicca una regola:</span>
+              <button type="button" id="crmToggleBtn" class="crm-toggle-btn">Pausa</button>
+            </div>
+
+            <div class="crm-viewport">
+              <div class="crm-text-slider" id="crmTextSlider">
+                <button type="button" class="crm-rule-chip" onclick="mostraScheda('card_1_1')">1. Card 1.1 📖</button>
+                <span class="sep">✦</span>
+                <button type="button" class="crm-rule-chip" onclick="mostraScheda('card_1_2')">2. Card 1.2 📖</button>
+                <span class="sep">✦</span>
+                <button type="button" class="crm-rule-chip" onclick="mostraScheda('card_1_3')">3. Card 1.3 📖</button>
+                <span class="sep">✦</span>
+                <button type="button" class="crm-rule-chip" onclick="mostraScheda('card_1_4')">4. Card 1.4 📖</button>
+                <span class="sep">✦</span>
+                <button type="button" class="crm-rule-chip" onclick="mostraScheda('card_1_1')">1. Card 1.1 📖</button>
+                <span class="sep">✦</span>
+                <button type="button" class="crm-rule-chip" onclick="mostraScheda('card_1_2')">2. Card 1.2 📖</button>
+                <span class="sep">✦</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="crm-pills-row">
+          <span class="crm-pills-label">Modali Card 1 (Clicca per aprire):</span>
+          <button type="button" class="crm-mini-pill" onclick="mostraScheda('card_1_1')">Card 1.1</button>
+          <button type="button" class="crm-mini-pill" onclick="mostraScheda('card_1_2')">Card 1.2</button>
+          <button type="button" class="crm-mini-pill" onclick="mostraScheda('card_1_3')">Card 1.3</button>
+          <button type="button" class="crm-mini-pill" onclick="mostraScheda('card_1_4')">Card 1.4</button>
+        </div>
+
+        <div class="crm-footer">
+          <span>⏱ 2 min di lettura</span>
+          <button type="button" class="crm-btn-link" onclick="mostraScheda('card_1')">📖 Modale Card 1 →</button>
+        </div>
+      </div>
+
+      <!-- CARD 2: MORPHING COMPONENTI HANGUL -->
+      <div class="card-morphing" id="morphingCard">
+        <div class="cm-dock">
+          <div class="cm-dock-title">Struttura dell'Hangul:</div>
+          <div class="cm-icons-rail">
+            <button type="button" class="cm-cat-btn active" data-badge="14 Base + 5 Doppie" data-title="Consonanti (자음 Jaeum)" data-deck="Le consonanti imitano la forma della bocca e della lingua durante la pronuncia (ㄱ, ㄴ, ㅁ, ㅅ, ㅇ)." data-img="https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=700&q=80">Consonanti</button>
+            <button type="button" class="cm-cat-btn" data-badge="10 Base + 11 Composte" data-title="Vocali (모음 Moeum)" data-deck="Costruite da tre simboli filosofici: cielo (·), terra (ㅡ) e essere umano (ㅣ) combinati in armonia." data-img="https://images.unsplash.com/photo-1544551763-46a013bb70d5?auto=format&fit=crop&w=700&q=80">Vocali</button>
+            <button type="button" class="cm-cat-btn" data-badge="Consonante Finale" data-title="Il Batchim (받침): Base della Sillaba" data-deck="La consonante finale posta in basso nel blocco sillabico (es. 한, 국, 말) che determina il suono di chiusura e le particelle." data-img="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=700&q=80">Batchim</button>
+          </div>
+        </div>
+
+        <div class="cm-photo">
+          <img id="cmImage" src="https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=700&q=80" alt="Hangul" />
+          <span class="cm-badge" id="cmBadge">14 Base + 5 Doppie</span>
+        </div>
+
+        <div class="cm-content">
+          <h3 id="cmTitle" class="cm-title">Consonanti (자음 Jaeum)</h3>
+          <p id="cmDeck" class="cm-deck">Le consonanti imitano la forma della bocca e della lingua durante la pronuncia (ㄱ, ㄴ, ㅁ, ㅅ, ㅇ).</p>
+        </div>
+
+        <div class="cm-footer">
+          <span>⏱ 3 min di studio</span>
+          <button type="button" class="cm-action-btn" onclick="mostraScheda('card_2')">Apri Modale Card 2 →</button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- COLONNA CENTRALE: VIDEO IN PRIMO PIANO -->
+    <div class="col-center-video">
+      <div class="video-main-card">
+        <div class="video-card-header">
+          <span class="video-badge-pill">Masterclass Video in Primo Piano</span>
+          <h2 class="video-heading">Corso di Coreano Quotidiano: Conversazione a Seul</h2>
+          <p class="video-desc">Ascolta e ripeti dialoghi naturali con Hangul, romanizzazione e note grammaticali.</p>
+        </div>
+
+        <div class="video-box">
+          <iframe
+            id="videoPlayer"
+            class="video-player"
+            src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ"
+            title="Video Lezione Coreano"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          ></iframe>
+        </div>
+
+        <div class="video-rules-row">
+          <div class="rule-box" onclick="mostraScheda('video_1')">
+            <span class="rule-tag">TOPIK 1</span>
+            <h4>Vocaboli essenziali</h4>
+            <p>Parole ed espressioni quotidiane dal dialogo video. Clicca per aprire.</p>
+          </div>
+          <div class="rule-box" onclick="mostraScheda('video_2')">
+            <span class="rule-tag">Lessico</span>
+            <h4>Nuove parole</h4>
+            <p>Termini chiave e suffissi di cortesia spiegati. Clicca per aprire.</p>
+          </div>
+          <div class="rule-box" onclick="mostraScheda('video_3')">
+            <span class="rule-tag">Script</span>
+            <h4>Trascrizione video</h4>
+            <p>Trascrizione completa del dialogo con note di pronuncia. Clicca per aprire.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COLONNA DESTRA -->
+    <div class="col-side">
+
+      <!-- CARD 3: SLIDER GRAMMATICA COREANA -->
+      <div class="card-chapter-reader">
+        <div class="ccr-top">
+          <span class="ccr-badge">✦ Grammatica Coreana</span>
+          <div class="ccr-arrows">
+            <button type="button" id="ccrPrev" class="ccr-arrow">‹</button>
+            <span id="ccrIndex" class="ccr-index">01 / 03</span>
+            <button type="button" id="ccrNext" class="ccr-arrow">›</button>
+          </div>
+        </div>
+
+        <div class="ccr-photo">
+          <img src="https://images.unsplash.com/photo-1585320806297-9794b3e4eeae?auto=format&fit=crop&w=700&q=80" alt="Grammatica Coreana" />
+          <div class="ccr-photo-tag">Particelle, Coniugazione &amp; Onorifici</div>
+        </div>
+
+        <div class="ccr-slider-dock">
+          <div class="ccr-tabs">
+            <button type="button" class="ccr-tab active" data-step="0">01. 은/는 · 이/가</button>
+            <button type="button" class="ccr-tab" data-step="1">02. -아요/어요</button>
+            <button type="button" class="ccr-tab" data-step="2">03. Onorifici</button>
+          </div>
+
+          <div class="ccr-prose-viewport">
+            <div class="ccr-prose-track" id="ccrProseTrack">
+              <div class="ccr-slide">
+                <div class="eyebrow">Tema vs Soggetto</div>
+                <h4>Particelle 은/는 e 이/가</h4>
+                <p>Si scelgono in base alla presenza del Batchim finale: 저는 (io - tema), 학생이 (lo studente - soggetto).</p>
+              </div>
+              <div class="ccr-slide">
+                <div class="eyebrow">Stile Cortese Informale</div>
+                <h4>La Coniugazione -아요 / -어요</h4>
+                <p>Se l'ultima vocale della radice è ㅏ o ㅗ si aggiunge -아요 (가요, 봐요); negli altri casi si usa -어요 (먹어요).</p>
+              </div>
+              <div class="ccr-slide">
+                <div class="eyebrow">Rispetto &amp; Registro</div>
+                <h4>Suffisso Onorifico -(으)세요</h4>
+                <p>Il verbo si sposta sempre alla fine della frase (SOV) e con -(으)세요 esprime cortesia verso l'interlocutore.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="ccr-footer">
+          <span>⏱ 4 min di studio</span>
+          <button type="button" class="ccr-btn" onclick="mostraScheda('card_3')">Apri Modale Card 3 →</button>
+        </div>
+      </div>
+
+      <!-- CARD 4: GALLERIA SCRITTURA HANGUL -->
+      <div class="card-visual-story" id="photoSliderCard">
+        <div class="cvs-header">
+          <span class="cvs-badge">✍️ Blocchi Sillabici</span>
+          <span class="cvs-counter" id="cvsCounter">1 / 3</span>
+        </div>
+
+        <div class="cvs-slider-box">
+          <div class="cvs-track" id="cvsTrack">
+            <div class="cvs-slide">
+              <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=700&q=80" alt="Sillaba CV" />
+              <div class="cvs-caption">1. Blocco CV (가, 나, 다): consonante iniziale a sinistra + vocale verticale a destra</div>
+            </div>
+            <div class="cvs-slide">
+              <img src="https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=700&q=80" alt="Sillaba CVC" />
+              <div class="cvs-caption">2. Blocco CVC con Batchim (한, 글): la consonante finale chiude il quadrato in basso</div>
+            </div>
+            <div class="cvs-slide">
+              <img src="https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?auto=format&fit=crop&w=700&q=80" alt="Vocali Orizzontali" />
+              <div class="cvs-caption">3. Vocali orizzontali (고, 노, 도): la consonante iniziale si posiziona sopra la vocale</div>
+            </div>
+          </div>
+
+          <button type="button" class="cvs-nav-btn prev" id="cvsPrev">‹</button>
+          <button type="button" class="cvs-nav-btn next" id="cvsNext">›</button>
+        </div>
+
+        <div class="cvs-dots" id="cvsDots">
+          <button type="button" class="dot active" data-index="0"></button>
+          <button type="button" class="dot" data-index="1"></button>
+          <button type="button" class="dot" data-index="2"></button>
+        </div>
+
+        <div class="cvs-details">
+          <h3 class="cvs-title">L'Architettura dei Blocchi Hangul</h3>
+          <div class="cvs-footer">
+            <span>Guida visiva</span>
+            <button type="button" class="cvs-link" onclick="mostraScheda('card_4')">Apri Modale Card 4 →</button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- MODALE OVERLAY -->
+  <div id="schedaModal" class="modal-overlay" onclick="gestisciClickBackdrop(event)">
+    <div class="modal-window">
+      <div class="modal-window-header">
+        <div>
+          <span class="modal-badge-tag" id="modalTag">Scheda Didattica</span>
+          <h3 class="modal-window-title" id="modalTitle">Titolo Scheda</h3>
+        </div>
+        <button type="button" class="modal-close-x" onclick="chiudiScheda()" aria-label="Chiudi Modale">✕</button>
+      </div>
+
+      <div class="modal-window-body" id="modalBody">
+        <!-- Contenuto dinamico della lezione -->
+      </div>
+
+      <div class="modal-window-footer">
+        <span class="modal-footer-note">Premi ✕ o clicca all'esterno per chiudere.</span>
+        <button type="button" class="modal-close-btn" onclick="chiudiScheda()">Chiudi Scheda</button>
+      </div>
+    </div>
+  </div>
+
+</div>`;
+
+// ==========================================================================
 // CSS FLUIDO CON MODALE OVERLAY AD ALTA VISIBILITÀ
 // ==========================================================================
 const ROBUST_CSS = `/* ========================================================
    GOOGLE FONTS IMPORT UNIVERSALE & TIPOGRAFIA
-   (Supporto nativo per Orientali CJK, Slave Cirillico, Occidentali Latino e tutte le altre lingue)
+   (Supporto nativo per Giapponese, Cinese, Coreano, Cirillico e Latino)
    ======================================================== */
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Montserrat:wght@400;600;700;800&family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Serif+JP:wght@600;700;900&family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Roboto:wght@400;500;700;900&family=Sawarabi+Mincho&family=Zen+Kaku+Gothic+New:wght@400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Montserrat:wght@400;600;700;800&family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Sans+KR:wght@400;500;700;900&family=Noto+Sans+SC:wght@400;500;700;900&family=Noto+Serif+JP:wght@600;700;900&family=Noto+Serif+KR:wght@600;700;900&family=Noto+Serif+SC:wght@600;700;900&family=Plus+Jakarta+Sans:wght@400;600;700;800&family=Roboto:wght@400;500;700;900&family=Sawarabi+Mincho&family=Zen+Kaku+Gothic+New:wght@400;700;900&display=swap');
 
 :root {
-  --font-body: 'Plus Jakarta Sans', 'Noto Sans JP', 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-heading: 'Cinzel', 'Noto Serif JP', 'Montserrat', serif;
+  --font-body: 'Plus Jakarta Sans', 'Noto Sans JP', 'Noto Sans SC', 'Noto Sans KR', 'Montserrat', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-heading: 'Cinzel', 'Noto Serif JP', 'Noto Serif SC', 'Noto Serif KR', 'Montserrat', serif;
   --base-font-size: 15px;
 }
 
@@ -2244,7 +2786,7 @@ const ROBUST_JS = `// ========================================================
 (function() {
   const track = document.getElementById("cvsTrack");
   const counter = document.getElementById("cvsCounter");
-  const dots = document.querySelectorAll("#cvsDots .dot");
+  const dots = document.querySelectorAll(".cvs-dots .dot");
   const slides = document.querySelectorAll(".cvs-slide");
   const total = slides.length || 3;
   let current = 0;
@@ -2504,14 +3046,34 @@ document.addEventListener("keydown", (e) => {
 });
 `;
 
-export const LANGUAGE_TEMPLATES: Record<string, LanguageTemplate> = {
+export const LANGUAGE_TEMPLATES: Record<CourseLang, LanguageTemplate> = {
   orientali: {
     id: 'orientali',
-    name: 'Lingue Orientali (Giapponese)',
+    name: 'Giapponese (Orientali)',
     flag: '🇯🇵',
     langTitle: 'Giapponese · Scrittura Kanji & Calligrafia',
     langSubtitle: 'Ordine dei tratti (Kakijun), radicali e particelle fondamentali',
     html: ORIENTALI_HTML,
+    css: ROBUST_CSS,
+    js: ROBUST_JS,
+  },
+  cinese: {
+    id: 'cinese',
+    name: 'Cinese (Mandarino)',
+    flag: '🇨🇳',
+    langTitle: 'Cinese · Caratteri Hanzi, Pinyin & 4 Toni',
+    langSubtitle: 'Ordine dei tratti (Bǐshùn), radicali, toni e classificatori',
+    html: CINESE_HTML,
+    css: ROBUST_CSS,
+    js: ROBUST_JS,
+  },
+  coreano: {
+    id: 'coreano',
+    name: 'Coreano (Hangul)',
+    flag: '🇰🇷',
+    langTitle: 'Coreano · Alfabeto Hangul & Grammatica',
+    langSubtitle: 'Blocchi sillabici, Batchim, particelle e livelli di cortesia',
+    html: COREANO_HTML,
     css: ROBUST_CSS,
     js: ROBUST_JS,
   },
